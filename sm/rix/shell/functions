@@ -24,27 +24,23 @@ rix.sm.install()
 rix.old_install.backup()
 {
   if paths exist /opt/sm
-  then
-    paths remove /opt/sm.$timestamp
-    paths move from /opt/sm to /opt/sm.$timestamp
+  then paths move from /opt/sm to /opt/sm.$timestamp
   fi
+
   if paths exist /usr/local/rvm
-  then
-    paths remove /usr/local/rvm.$timestamp
-    paths move from /usr/local/rvm to /usr/local/rvm.$timestamp
+  then paths move from /usr/local/rvm to /usr/local/rvm.$timestamp
   fi
 }
 
 rix.old_install.restore()
 {
+  paths remove /opt/sm
   if paths exist /opt/sm.$timestamp
-  then
-    paths remove /opt/sm
-    paths move from /opt/sm.$timestamp to /opt/sm
+  then paths move from /opt/sm.$timestamp to /opt/sm
   fi
+
+  paths remove /usr/local/rvm
   if paths exist /usr/local/rvm.$timestamp
-  then
-    paths remove /usr/local/rvm
-    paths move from /usr/local/rvm.$timestamp to /usr/local/rvm
+  then paths move from /usr/local/rvm.$timestamp to /usr/local/rvm
   fi
 }
