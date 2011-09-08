@@ -11,19 +11,23 @@ rix.start()
 {
   trace_filter action
   log "Rails Installer uniX - preparation script - start"
-  log_step "backup sm/rvm"  rix.old_install.backup
+  log_step "backup sm/rvm"      rix.old_install.backup
   rix.sm.install
-  log_step "install rvm"    rix.rvm.install
-  log_step "restore sm/rvm" rix.old_install.restore
+  log_step "install rvm"        rix.rvm.install
+  rix.rvm.install.ruby 1.9.2
+  log_step "restore sm/rvm"     rix.old_install.restore
   log "Rails Installer uniX - preparation script - finished"
 }
 
-rix.sm.install()
+rix.rvm.install.ruby()
 {
-  log_step "install sm"
-  export install_path=/opt/sm
-  install_sm >$logs/install_sm 2>&1
-  log_step_message="install sm" #TODO: fix log_step to allow building trees
+  log_step "install ruby - $1"
+  printf "\n"
+  (
+    PATH=/usr/local/rvm/bin:$PATH
+    rvm install $@
+  )
+  log_step_message="install ruby - $1"
   log_step success
 }
 
@@ -35,6 +39,15 @@ rix.rvm.install()
   then __status=0 ; else __status=$? ; fi
   popd >/dev/null
   return ${__status}
+}
+
+rix.sm.install()
+{
+  log_step "install sm"
+  export install_path=/opt/sm
+  install_sm >$logs/install_sm 2>&1
+  log_step_message="install sm" #TODO: fix log_step to allow building trees
+  log_step success
 }
 
 rix.old_install.backup()
