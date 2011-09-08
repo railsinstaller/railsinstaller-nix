@@ -7,9 +7,18 @@ rix_initialize()
 
 rix.start()
 {
+  trace_filter action
+  log "Rails Installer uniX - preparation script - start"
   log_step "backup sm" rix.old_install.backup
-  log "TODO: code here!"
+  rix.sm.install #it shows its own steps
   log_step "restore sm" rix.old_install.restore
+  log "Rails Installer uniX - preparation script - finished"
+}
+
+rix.sm.install()
+{
+  export install_path=/opt/sm
+  install_sm
 }
 
 rix.old_install.backup()
