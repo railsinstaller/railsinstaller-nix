@@ -5,7 +5,13 @@ set -o nounset
 
 if [[ -z "$sm_local_path" || ! -d "$sm_local_path" ]]
 then
-  printf "sm_local_path is not pointing on a direcotory.\n"
+  printf "sm_local_path='${sm_local_path}' is not pointing on a direcotory.\n"
+  exit 1
+fi
+
+if [[ -z "${rvm_local_path:-}" || ! -d "${rvm_local_path}" ]]
+then
+  printf "rvm_local_path='${rvm_local_path:-}' is not pointing on a direcotory.\n"
   exit 1
 fi
 
