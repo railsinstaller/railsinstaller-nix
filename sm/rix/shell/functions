@@ -1,6 +1,31 @@
 #!/bin/sh
 
-rix_start()
+rix_initialize()
 {
-  log test2
+  rix.start
+}
+
+rix.start()
+{
+  log_step "backup sm" rix.old_install.backup
+  log "TODO: code here!"
+  log_step "restore sm" rix.old_install.restore
+}
+
+rix.old_install.backup()
+{
+  if paths exist /opt/sm
+  then
+    paths remove /opt/sm.$timestamp
+    paths move from /opt/sm to /opt/sm.$timestamp
+  fi
+}
+
+rix.old_install.restore()
+{
+  if paths exist /opt/sm.$timestamp
+  then
+    paths remove /opt/sm
+    paths move from /opt/sm.$timestamp to /opt/sm
+  fi
 }

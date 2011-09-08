@@ -13,5 +13,3 @@ export extensions_search_paths=( $PWD/sm )
 . "${modules_path}/core/initialize"
 
 modules rix
-
-rix_start
