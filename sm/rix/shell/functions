@@ -15,19 +15,22 @@ rix.start()
   rix.sm.install
   log_step "install rvm"        rix.rvm.install
   rix.rvm.install.ruby 1.9.2
+  log_step "default 1.9.2"      rix.rvm.set.default 1.9.2
   log_step "restore sm/rvm"     rix.old_install.restore
   log_step "cleaning old logs"  rix.clean.old.logs
   log "Rails Installer uniX - preparation script - finished"
+}
+
+rix.rvm.set.default()
+{
+  rvm --default use $@
 }
 
 rix.rvm.install.ruby()
 {
   log_step "install ruby - $1"
   printf "\n"
-  (
-    PATH=/usr/local/rvm/bin:$PATH
-    rvm install $@
-  )
+  rvm install $@
   log_step_message="install ruby - $1"
   log_step success
 }
@@ -39,6 +42,7 @@ rix.rvm.install()
   if ./install >$logs/install_rvm 2>&1
   then __status=0 ; else __status=$? ; fi
   popd >/dev/null
+  PATH=/usr/local/rvm/bin:$PATH
   return ${__status}
 }
 
