@@ -16,6 +16,7 @@ rix.start()
   log_step "install rvm"        rix.rvm.install
   rix.rvm.install.ruby 1.9.2
   log_step "restore sm/rvm"     rix.old_install.restore
+  log_step "cleaning old logs"  rix.clean.old.logs
   log "Rails Installer uniX - preparation script - finished"
 }
 
@@ -72,4 +73,12 @@ rix.old_install.restore()
   if paths exist /usr/local/rvm.$timestamp
   then paths move from /usr/local/rvm.$timestamp to /usr/local/rvm
   fi
+}
+
+rix.clean.old.logs()
+{
+  local _log _logs_base="${logs%/*}"
+  for _log in $( cd ${_logs_base} ; ls -t1 | tail +6 )
+  do rm -rf ${_logs_base}/${_log}
+  done
 }
