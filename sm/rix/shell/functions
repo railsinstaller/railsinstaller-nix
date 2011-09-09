@@ -16,6 +16,7 @@ rix.start()
   log_step "install rvm"        rix.rvm.install
   rix.rvm.install.ruby 1.9.2
   log_step "default 1.9.2"      rix.rvm.set.default 1.9.2
+  rix.rvm.install.ruby jruby
   log_step "restore sm/rvm"     rix.old_install.restore
   log_step "cleaning old logs"  rix.clean.old.logs
   log "Rails Installer uniX - preparation script - finished"
@@ -30,9 +31,12 @@ rix.rvm.install.ruby()
 {
   log_step "install ruby - $1"
   printf "\n"
-  rvm install $@
-  log_step_message="install ruby - $1"
-  log_step success
+  if rvm install $@
+  then
+    log_step success
+  else
+    log_step failed
+  fi
 }
 
 rix.rvm.install()
