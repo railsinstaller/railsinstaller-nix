@@ -20,6 +20,7 @@ rix.start()
   rix.rvm.install.ruby jruby
   rix.rvm.install.ruby rbx
   rix.rvm.default.ruby 1.9.2
+  rix.rvm.install.rails
 }
 
 rix.end()
@@ -41,11 +42,23 @@ rix.failed()
   exit ${_status}
 }
 
+rix.rvm.install.rails()
+{
+  log_step "install rails"
+  printf "\n"
+  if gem install rails $@ 2>&1 | tee $logs/install_rails | awk '{printf "."; flush}'
+  then
+    log_step success
+  else
+    log_step failed
+  fi
+}
+
 rix.rvm.install.ruby()
 {
   log_step "install ruby - $1"
   printf "\n"
-  if rvm install $@ 2>&1 | tee $logs/install_ruby-$1
+  if rvm install $@ 2>&1 | tee $logs/install_ruby-$1 | awk '{printf "."; flush}'
   then
     log_step success
   else
