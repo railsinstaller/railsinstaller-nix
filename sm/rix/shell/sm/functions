@@ -1,0 +1,26 @@
+#!/bin/sh
+
+sm()
+{
+  env -i "${__initial_env[@]}" /opt/sm/bin/sm $@
+}
+
+rix.sm.install.set()
+{
+  sm sets install $1
+}
+
+rix.sm.install.pkg()
+{
+  sm $1 install
+}
+
+rix.sm.install()
+{
+  log_step "install sm"
+  export install_path=/opt/sm
+  install_sm >$logs/install_sm 2>&1
+  PATH=/opt/sm/bin:$PATH
+  log_step_message="install sm" #TODO: fix log_step to allow building trees
+  log_step success
+}

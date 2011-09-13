@@ -1,0 +1,82 @@
+#!/bin/sh
+
+rix.rvm.install.rails()
+{
+  log_step "install rails"
+  printf "\n"
+  if gem install rails $@ 2>&1 | tee $logs/install_rails | awk '{printf "."; flush}'
+  then
+    log_step success
+  else
+    log_step failed
+  fi
+}
+
+rix.rvm.install.ruby()
+{
+  log_step "install ruby - $1"
+  printf "\n"
+  if rvm install $@ 2>&1 | tee $logs/install_ruby-$1 | awk '{printf "."; flush}'
+  then
+    log_step success
+  else
+    log_step failed
+  fi
+}
+
+rix.rvm.default.ruby()
+{
+  log_step "default ruby - $1"
+  local _name
+  if _name=$( rvm --default use $@  | awk '{print $2}' )
+  then
+    log_step success
+  else
+    log_step failed
+  fi
+  log_step "use ruby - $1"
+  if source /usr/local/rvm/environments/${_name##*/}
+  then
+    log_step success
+  else
+    log_step failed
+  fi
+}
+
+rix.rvm.install()
+{
+  log_step "install rvm"
+  pushd $rvm_local_path >/dev/null
+  if bash -e ./install >$logs/install_rvm 2>&1
+  then
+    __status=0
+    PATH=/usr/local/rvm/bin:$PATH
+    log_step success
+  else
+    log_step failed
+  fi
+  popd >/dev/null
+
+  local _rvm_path
+  if [[ -n "$SUDO_USER" ]]
+  then
+    _rvm_path=$( awk -F : '/^'"$SUDO_USER"':/ { print $6 }' < /etc/passwd )
+    if [[ -d "${_rvm_path}/.rvm" ]]
+    then
+      _rvm_path="${_rvm_path}/.rvm"
+    else
+      _rvm_path=""
+    fi
+  fi
+  if [[ -z "${_rvm_path}" && -d /usr/local/rvm.$timestamp ]]
+  then
+    _rvm_path=/usr/local/rvm.$timestamp
+  fi
+  if [[ -d ${_rvm_path}/archives/ ]]
+  then
+    log_step "link archives to ${_rvm_path}/archives"
+    rm -rf /usr/local/rvm/archives/
+    ln -s ${_rvm_path}/archives/ /usr/local/rvm/archives
+    log_step success
+  fi
+}
