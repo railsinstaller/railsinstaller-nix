@@ -22,11 +22,13 @@ rix.start()
   rix.rvm.install.rails
 
   rix.sm.install
-  for var in gnu languages libraries vcs
+  for var in databases gnu languages libraries vcs
   do
     rix.sm.install.set $var
   done
-  for var in zlib git sqlite3 readline openssl libiconv ncurses libyaml libffi autoconf automake make m4 libxml libxslt gcc
+  for var in zlib ncurses readline libyaml libxml2 libxslt \
+    autoconf automake make m4 libffi libiconv \
+    openssl sqlite3 git gcc
   do
     rix.sm.install.pkg $var
   done
