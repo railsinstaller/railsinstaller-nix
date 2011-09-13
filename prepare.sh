@@ -3,6 +3,8 @@
 set -o errexit
 set -o nounset
 
+__initial_env=( $(env) )
+
 if (( UID ))
 then
   printf "This script should be run only by root, you can use sudo to do that.\n"
@@ -35,3 +37,7 @@ export extensions_search_paths=( $PWD/sm )
 . "${modules_path}/core/initialize"
 
 modules rix
+
+trap "rix.failed" ERR
+trap "rix.end" EXIT
+rix.start

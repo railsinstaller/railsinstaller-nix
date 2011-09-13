@@ -4,23 +4,37 @@ rix_initialize()
 {
   export logs=$initial_pwd/log/$timestamp
   mkdir -p "${logs}"
-  trap "rix.failed" ERR
-  trap "rix.end" EXIT
-  rix.start
+}
+
+sm()
+{
+  env -i "${__initial_env[@]}" /opt/sm/bin/sm $@
 }
 
 rix.start()
 {
+  local var
   trace_filter action
   log "Rails Installer uniX - preparation script - start"
   log_step "backup sm/rvm"      rix.old_install.backup
-  rix.sm.install
+
   rix.rvm.install
-  rix.rvm.install.ruby 1.9.2
-  rix.rvm.install.ruby jruby
-  rix.rvm.install.ruby rbx
+  for var in 1.9.2 jruby rbx
+  do
+    rix.rvm.install.ruby $var
+  done
   rix.rvm.default.ruby 1.9.2
   rix.rvm.install.rails
+
+  rix.sm.install
+  for var in gnu languages libraries vcs
+  do
+    rix.sm.install.set $var
+  done
+  for var in zlib git sqlite3 readline openssl libiconv ncurses libyaml libffi autoconf automake make m4 libxml libxslt gcc
+  do
+    rix.sm.install.pkg $var
+  done
 }
 
 rix.end()
@@ -37,9 +51,7 @@ rix.failed()
   then
     log_step failed
   fi
-  backtrace 'error' no_exit
-  rix.end
-  exit ${_status}
+  backtrace 'rix - error '"${_status}"
 }
 
 rix.rvm.install.rails()
@@ -123,11 +135,22 @@ rix.rvm.install()
   fi
 }
 
+rix.sm.install.set()
+{
+  sm sets install $1
+}
+
+rix.sm.install.pkg()
+{
+  sm $1 install
+}
+
 rix.sm.install()
 {
   log_step "install sm"
   export install_path=/opt/sm
   install_sm >$logs/install_sm 2>&1
+  PATH=/opt/sm/bin:$PATH
   log_step_message="install sm" #TODO: fix log_step to allow building trees
   log_step success
 }
@@ -141,6 +164,8 @@ rix.old_install.backup()
   if paths exist /usr/local/rvm
   then paths move from /usr/local/rvm to /usr/local/rvm.$timestamp
   fi
+
+  ldconfig /opt/sm/pkg/active/lib
 }
 
 rix.old_install.restore()
@@ -154,6 +179,8 @@ rix.old_install.restore()
   if paths exist /usr/local/rvm.$timestamp
   then paths move from /usr/local/rvm.$timestamp to /usr/local/rvm
   fi
+
+  ldconfig /opt/sm/pkg/active/lib
 }
 
 rix.clean.old.logs()
