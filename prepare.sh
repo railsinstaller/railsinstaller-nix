@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 set -o errexit
 set -o nounset
@@ -27,17 +27,25 @@ then
   exit 1
 fi
 
-export initial_pwd="$PWD"
-export sm_path="$sm_local_path"
-export modules_path="${sm_path}/core/sm/shell"
-export sm_script=/
-export extensions_search_paths=( $PWD/sm )
+export initial_pwd sm_path modules_path sm_script extensions_search_paths
+initial_pwd="$PWD"
+sm_path="$sm_local_path"
+modules_path="${sm_path}/core/sm/shell"
+sm_script=/
+extensions_search_paths=( $PWD/sm )
 
 . "${modules_path}/core/cli"
 . "${modules_path}/core/initialize"
 
-modules rix
+includes rix
 
-trap "rix.failed" ERR
-trap "rix.end" EXIT
+TRAPZERR(){
+  rix.failed
+}
+TRAPINT(){
+  rix.failed
+}
+TRAPEXIT(){
+  rix.end
+}
 rix.start

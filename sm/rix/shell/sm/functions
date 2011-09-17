@@ -17,10 +17,13 @@ rix.sm.install.pkg()
 
 rix.sm.install()
 {
-  log_step "install sm"
-  export install_path=/opt/sm
+  local log_step_message
+  log step "install sm"
+  export install_path sm_shell
+  install_path=/opt/sm
+  sm_shell=zsh
   install_sm >$logs/install_sm 2>&1
   PATH=/opt/sm/bin:$PATH
   log_step_message="install sm" #TODO: fix log_step to allow building trees
-  log_step success
+  log step success
 }

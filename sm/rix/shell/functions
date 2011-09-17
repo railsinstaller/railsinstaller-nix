@@ -11,7 +11,18 @@ rix.start()
   local var
   trace_filter action
   log "Rails Installer uniX - preparation script - start"
-  log_step "backup sm/rvm"      rix.old_install.backup
+  log step "backup sm/rvm"      rix.old_install.backup
+
+  rix.sm.install
+  for var in databases gnu languages libraries vcs
+  do
+    rix.sm.install.set $var
+  done
+  for var in zlib ncurses readline libyaml libxml2 libxslt \
+    libffi libiconv autoconf automake make m4 openssl sqlite3 git gcc
+  do
+    rix.sm.install.pkg $var
+  done
 
   rix.rvm.install
   for var in 1.9.2 jruby rbx
@@ -20,35 +31,26 @@ rix.start()
   done
   rix.rvm.default.ruby 1.9.2
   rix.rvm.install.rails
-
-  rix.sm.install
-  for var in databases gnu languages libraries vcs
-  do
-    rix.sm.install.set $var
-  done
-  for var in zlib ncurses readline libyaml libxml2 libxslt \
-    autoconf automake make m4 libffi libiconv \
-    openssl sqlite3 git gcc
-  do
-    rix.sm.install.pkg $var
-  done
 }
 
 rix.end()
 {
-  log_step "restore sm/rvm"     rix.old_install.restore
-  log_step "cleaning old logs"  rix.clean.old.logs
+  log step "restore sm/rvm"     rix.old_install.restore
+  log step "cleaning old logs"  rix.clean.old.logs
   log "Rails Installer uniX - preparation script - finished"
 }
 
 rix.failed()
 {
-  local _status=$?
+  local _status
+  _status=$?
   if [[ -n "$log_step_message" ]]
   then
-    log_step failed
+    log step failed
   fi
-  backtrace 'rix - error '"${_status}"
+  backtrace 'rix - error '"${_status}" no_exit
+  rix.end
+  __sm.seppuku
 }
 
 
@@ -82,7 +84,8 @@ rix.old_install.restore()
 
 rix.clean.old.logs()
 {
-  local _log _logs_base="${logs%/*}"
+  local _log _logs_base
+  _logs_base="${logs%/*}"
   for _log in $( cd ${_logs_base} ; ls -t1 | tail +6 )
   do rm -rf ${_logs_base}/${_log}
   done
