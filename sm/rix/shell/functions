@@ -35,7 +35,14 @@ rix.start()
 
 rix.end()
 {
-  log step "restore sm/rvm"     rix.old_install.restore
+  if [[ -z "${__no_clean}" ]]
+  then
+    log step "restore sm/rvm"     rix.old_install.restore
+  else
+    log "Reqested no cleaning,\n\
+ - rvm installed in: /usr/local/rvm\n\
+ - sn  installed in: /opt/sm"
+  fi
   log step "cleaning old logs"  rix.clean.old.logs
   log "Rails Installer uniX - preparation script - finished"
 }

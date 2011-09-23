@@ -11,19 +11,26 @@ then
   exit 1
 fi
 
+if [[ -r /etc/rixrc ]]
+then
+  source /etc/rixrc
+else
+  printf '/etc/rixrc does not exists,\n\
+it should contain paths to local checkout of sm and rvm\n\
+  export sm_local_path=/path/to/sm\n\
+  export rvm_local_path=/path/to/rvm\n'
+  exit 1
+fi
+
 if [[ -z "$sm_local_path" || ! -d "$sm_local_path" ]]
 then
-  printf "sm_local_path='${sm_local_path}' is not pointing on a direcotory.\n"
-  [[ -z "${SUDO_USER}" ]] ||
-    printf "For sudo remember to add it to /etc/sudoers 'Defaults env_keep = \"...\".'\n"
+  printf "sm_local_path='${sm_local_path:-}' is not pointing on a direcotory.\n"
   exit 1
 fi
 
 if [[ -z "${rvm_local_path:-}" || ! -d "${rvm_local_path}" ]]
 then
   printf "rvm_local_path='${rvm_local_path:-}' is not pointing on a direcotory.\n"
-  [[ -z "${SUDO_USER}" ]] ||
-    printf "For sudo remember to add it to /etc/sudoers 'Defaults env_keep = \"...\".'\n"
   exit 1
 fi
 
@@ -38,6 +45,11 @@ extensions_search_paths=( $PWD/sm )
 . "${modules_path}/core/initialize"
 
 includes rix
+
+__no_clean=""
+case " ${extension_args[*]} " in
+  (*[[:space]]--no-clean[[:space]]*) __no_clean=true ;;
+esac
 
 TRAPZERR(){
   rix.failed
