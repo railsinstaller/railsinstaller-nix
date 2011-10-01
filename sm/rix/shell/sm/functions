@@ -12,7 +12,10 @@ rix.sm.install.set()
 
 rix.sm.install.pkg()
 {
-  sm $1 install
+  local name
+  name=$1
+  shift
+  sm $name install "$@"
 }
 
 rix.sm.install()
