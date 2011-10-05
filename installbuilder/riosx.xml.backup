@@ -2,8 +2,6 @@
     <shortName>riosx</shortName>
     <fullName>Rails Installer OSX</fullName>
     <version>0.9.0</version>
-    <wrapLicenseFileText>0</wrapLicenseFileText>
-    <allowLanguageSelection>1</allowLanguageSelection>
     <componentList>
         <component>
             <name>default</name>
@@ -15,7 +13,7 @@
                 <folder>
                     <description>Program Files</description>
                     <destination>/opt/rix</destination>
-                    <name>programfiles-installer</name>
+                    <name>programfiles</name>
                     <platforms>all</platforms>
                     <shortcutList>
                         <shortcut>
@@ -37,7 +35,7 @@
                 <folder>
                     <description>Program Files</description>
                     <destination>/usr/local/rvm</destination>
-                    <name>programfiles-rvm</name>
+                    <name>programfileslinux</name>
                     <platforms>all</platforms>
                     <distributionFileList>
                         <distributionDirectory>
@@ -48,7 +46,7 @@
                 <folder>
                     <description>Program Files</description>
                     <destination>/opt/sm</destination>
-                    <name>programfiles-sm</name>
+                    <name>programfilesosx</name>
                     <platforms>all</platforms>
                     <distributionFileList>
                         <distributionDirectory>
@@ -66,6 +64,5 @@
     <enableRollback>1</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <requireInstallationByRootUser>1</requireInstallationByRootUser>
-    <uninstallerDirectory>/opt/rix</uninstallerDirectory>
     <vendor>Rails Installer</vendor>
 </project>
