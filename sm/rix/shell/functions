@@ -43,7 +43,7 @@ rix.end()
   else
     log "Reqested no cleaning,\n\
  - rvm installed in: /usr/local/rvm\n\
- - sn  installed in: /opt/sm"
+ - sm  installed in: /opt/sm"
   fi
   log step "cleaning old logs"  rix.clean.old.logs
   log "Rails Installer uniX - preparation script - finished"
