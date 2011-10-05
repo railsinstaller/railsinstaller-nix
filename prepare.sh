@@ -18,7 +18,8 @@ else
   printf '/etc/rixrc does not exists,\n\
 it should contain paths to local checkout of sm and rvm\n\
   export sm_local_path=/path/to/sm\n\
-  export rvm_local_path=/path/to/rvm\n'
+  export rvm_local_path=/path/to/rvm\n\
+  export installbuilder_path=/path/to/installbuilder\n'
   exit 1
 fi
 
