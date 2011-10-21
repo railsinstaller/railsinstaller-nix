@@ -36,8 +36,8 @@
                 </folder>
                 <folder>
                     <description>Program Files</description>
-                    <destination>/usr/local/rvm</destination>
-                    <name>programfiles-rvm</name>
+                    <destination>/usr/local</destination>
+                    <name>programfiles_rvm</name>
                     <platforms>all</platforms>
                     <distributionFileList>
                         <distributionDirectory>
@@ -47,11 +47,12 @@
                 </folder>
                 <folder>
                     <description>Program Files</description>
-                    <destination>/opt/sm</destination>
-                    <name>programfiles-sm</name>
+                    <destination>/opt</destination>
+                    <name>programfiles_sm</name>
                     <platforms>all</platforms>
                     <distributionFileList>
                         <distributionDirectory>
+                            <excludeFiles>src/*;archives/*;scm/*</excludeFiles>
                             <origin>/opt/sm</origin>
                         </distributionDirectory>
                     </distributionFileList>
@@ -69,3 +70,4 @@
     <uninstallerDirectory>/opt/rix</uninstallerDirectory>
     <vendor>Rails Installer</vendor>
 </project>
+
