@@ -33,6 +33,9 @@ rix.start()
   done
   rix.rvm.default.ruby 1.9.2
   rix.rvm.install.rails
+
+  $installbuilder_path/bin/builder build installbuilder/riosx.xml
+  ls "$installbuilder_path/output"
 }
 
 rix.end()

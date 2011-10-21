@@ -1,10 +1,11 @@
 #!/usr/bin/env sh
 
 PROJECTS=$1
+BUILDER=$2
 
-if [[ -z "$PROJECTS" ]]
+if [[ -z "$PROJECTS" || -z "$BUILDER" ]]
 then
-  printf "Use\n  $0 /path/to/projects\n"
+  printf "Use\n  $0 /path/to/projects /path/to/installbuilder\n"
   exit 1
 fi
 
@@ -33,4 +34,5 @@ printf -- "-- paths in /etc/rixrc :\n"
 printf "\
 export sm_local_path=$PROJECTS/sm\n\
 export rvm_local_path=$PROJECTS/rvm\n\
+export installbuilder_path=$BUILDER\n\
 " | sudo tee /etc/rixrc

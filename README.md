@@ -13,7 +13,7 @@ with no required prerequisites on a OS X system.
 Local copy is used to build installer, so any branch/version locally downloaded
 will be used. For quick configuration in ~/projects use:
 
-    ./prepare_local.sh ~/projects
+    ./prepare_local.sh ~/projects ~/installbuilder
 
 ## Building installer
 
