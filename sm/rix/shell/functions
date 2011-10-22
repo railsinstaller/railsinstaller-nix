@@ -14,12 +14,14 @@ rix.start()
   log step "backup sm/rvm"      rix.old_install.backup
 
   rix.sm.install
-  for var in databases gnu languages libraries vcs
+  for var in databases gnu languages libraries tools vcs
   do
     rix.sm.install.set $var
   done
-  for var in zlib ncurses readline libyaml libxml2 libxslt \
-    libffi libiconv autoconf automake make m4 openssl sqlite3 git \
+  for var in zlib ncurses readline \
+    libyaml libxml2 libxslt libffi libiconv \
+    autoconf automake make m4 \
+    openssl sqlite3 curl git \
     gmp mpfr mpc
   do
     rix.sm.install.pkg $var
@@ -48,6 +50,7 @@ rix.end()
  - rvm installed in: /usr/local/rvm\n\
  - sm  installed in: /opt/sm"
   fi
+  log step "recalculating dependencies"  ldconfig /opt/sm/pkg/active/lib
   log step "cleaning old logs"  rix.clean.old.logs
   log "Rails Installer uniX - preparation script - finished"
 }
@@ -76,7 +79,7 @@ rix.old_install.backup()
   then paths move from /usr/local/rvm to /usr/local/rvm.$timestamp
   fi
 
-  ldconfig /opt/sm/pkg/active/lib
+  log step "recalculating dependencies"  ldconfig /opt/sm/pkg/active/lib
 }
 
 rix.old_install.restore()
@@ -90,8 +93,6 @@ rix.old_install.restore()
   if paths exist /usr/local/rvm.$timestamp
   then paths move from /usr/local/rvm.$timestamp to /usr/local/rvm
   fi
-
-  ldconfig /opt/sm/pkg/active/lib
 }
 
 rix.clean.old.logs()

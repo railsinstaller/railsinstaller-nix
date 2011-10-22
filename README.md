@@ -22,6 +22,6 @@ Installer will automatically go through all required steps:
     sudo ./prepare.sh
 
 As the installer xml scrip is not included there will be no output of the process,
-to keep the prepared files use --no-clean flag, which will prevent the process from cleaning after itself:
+to keep the prepared files use __no_clean variable, which will prevent the process from cleaning after itself:
 
-    sudo ./prepare.sh --no-clean
+    sudo __no_clean=true ./prepare.sh

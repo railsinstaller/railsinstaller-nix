@@ -47,11 +47,6 @@ extensions_search_paths=( $PWD/sm )
 
 includes rix
 
-__no_clean=""
-case " ${extension_args[*]} " in
-  (*[[:space]]--no-clean[[:space]]*) __no_clean=true ;;
-esac
-
 TRAPZERR(){
   rix.failed
 }
