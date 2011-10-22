@@ -13,9 +13,9 @@
             <show>1</show>
             <folderList>
                 <folder>
-                    <description>Program Files</description>
+                    <description>Uninstaller</description>
                     <destination>/opt/rix</destination>
-                    <name>programfiles-installer</name>
+                    <name>programfiles_installer</name>
                     <platforms>all</platforms>
                     <shortcutList>
                         <shortcut>
@@ -35,18 +35,19 @@
                     </shortcutList>
                 </folder>
                 <folder>
-                    <description>Program Files</description>
+                    <description>RVM</description>
                     <destination>/usr/local</destination>
                     <name>programfiles_rvm</name>
                     <platforms>all</platforms>
                     <distributionFileList>
                         <distributionDirectory>
+                            <excludeFiles>repos/*;archives/*;src/*</excludeFiles>
                             <origin>/usr/local/rvm</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
                 <folder>
-                    <description>Program Files</description>
+                    <description>SM Framework</description>
                     <destination>/opt</destination>
                     <name>programfiles_sm</name>
                     <platforms>all</platforms>
@@ -69,5 +70,34 @@
     <requireInstallationByRootUser>1</requireInstallationByRootUser>
     <uninstallerDirectory>/opt/rix</uninstallerDirectory>
     <vendor>Rails Installer</vendor>
+    <parameterList>
+        <parameterGroup>
+            <name>git_configuration</name>
+            <title>Git configuration</title>
+            <explanation>Please enter git user name and email address</explanation>
+            <value></value>
+            <default></default>
+            <parameterList>
+                <stringParameter>
+                    <name>git_username</name>
+                    <description>Username</description>
+                    <explanation></explanation>
+                    <value></value>
+                    <default></default>
+                    <allowEmptyValue>1</allowEmptyValue>
+                    <width>30</width>
+                </stringParameter>
+                <stringParameter>
+                    <name>git_email</name>
+                    <description>Email</description>
+                    <explanation></explanation>
+                    <value></value>
+                    <default></default>
+                    <allowEmptyValue>1</allowEmptyValue>
+                    <width>30</width>
+                </stringParameter>
+            </parameterList>
+        </parameterGroup>
+    </parameterList>
 </project>
 
