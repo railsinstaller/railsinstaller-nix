@@ -50,7 +50,7 @@ rix.end()
  - rvm installed in: /usr/local/rvm\n\
  - sm  installed in: /opt/sm"
   fi
-  log step "recalculating dependencies"  ldconfig /opt/sm/pkg/active/lib
+  ldconfig /opt/sm/pkg/active/lib
   log step "cleaning old logs"  rix.clean.old.logs
   log "Rails Installer uniX - preparation script - finished"
 }
@@ -79,7 +79,7 @@ rix.old_install.backup()
   then paths move from /usr/local/rvm to /usr/local/rvm.$timestamp
   fi
 
-  log step "recalculating dependencies"  ldconfig /opt/sm/pkg/active/lib
+  ldconfig /opt/sm/pkg/active/lib
 }
 
 rix.old_install.restore()
