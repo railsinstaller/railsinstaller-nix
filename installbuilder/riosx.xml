@@ -1,7 +1,7 @@
 <project>
     <shortName>riosx</shortName>
     <fullName>Rails Installer OSX</fullName>
-    <version>0.9.0</version>
+    <version>0.9.1</version>
     <wrapLicenseFileText>0</wrapLicenseFileText>
     <allowLanguageSelection>1</allowLanguageSelection>
     <componentList>
@@ -74,13 +74,13 @@
         <parameterGroup>
             <name>git_configuration</name>
             <title>Git configuration</title>
-            <explanation>Please enter git user name and email address</explanation>
+            <explanation>Please enter full name and email address for use in git</explanation>
             <value></value>
             <default></default>
             <parameterList>
                 <stringParameter>
                     <name>git_username</name>
-                    <description>Username</description>
+                    <description>Full name</description>
                     <explanation></explanation>
                     <value></value>
                     <default></default>
