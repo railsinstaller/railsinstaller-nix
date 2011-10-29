@@ -7,10 +7,10 @@
     <componentList>
         <component>
             <name>default</name>
-            <description>Default Component</description>
-            <canBeEdited>1</canBeEdited>
+            <description>RIX Installer</description>
+            <canBeEdited>0</canBeEdited>
             <selected>1</selected>
-            <show>1</show>
+            <show>0</show>
             <folderList>
                 <folder>
                     <description>Uninstaller</description>
@@ -34,10 +34,53 @@
                         </shortcut>
                     </shortcutList>
                 </folder>
+            </folderList>
+        </component>
+        <component>
+            <name>sm_libs</name>
+            <description>SM - libs</description>
+            <canBeEdited>0</canBeEdited>
+            <requiredSize>90</requiredSize>
+            <selected>1</selected>
+            <show>1</show>
+            <folderList>
                 <folder>
-                    <description>RVM</description>
+                    <description>SM Files</description>
+                    <destination>/opt</destination>
+                    <name>sm_files</name>
+                    <platforms>all</platforms>
+                    <distributionFileList>
+                        <distributionDirectory>
+                            <excludeFiles>src/*;archives/*;scm/*</excludeFiles>
+                            <origin>/opt/sm</origin>
+                        </distributionDirectory>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>SM Config</description>
+                    <destination>/etc/profile.d</destination>
+                    <name>sm_conf</name>
+                    <platforms>all</platforms>
+                    <distributionFileList>
+                        <distributionFile>
+                            <origin>/etc/profile.d/sm.sh</origin>
+                        </distributionFile>
+                    </distributionFileList>
+                </folder>
+            </folderList>
+        </component>
+        <component>
+            <name>rvm_rubies</name>
+            <description>RVM - rubies</description>
+            <canBeEdited>0</canBeEdited>
+            <requiredSize>250</requiredSize>
+            <selected>1</selected>
+            <show>1</show>
+            <folderList>
+                <folder>
+                    <description>RVM Files</description>
                     <destination>/usr/local</destination>
-                    <name>programfiles_rvm</name>
+                    <name>rvm_files</name>
                     <platforms>all</platforms>
                     <distributionFileList>
                         <distributionDirectory>
@@ -47,15 +90,14 @@
                     </distributionFileList>
                 </folder>
                 <folder>
-                    <description>SM Framework</description>
-                    <destination>/opt</destination>
-                    <name>programfiles_sm</name>
+                    <description>RVM Config</description>
+                    <destination>/etc/profile.d</destination>
+                    <name>rvm_conf</name>
                     <platforms>all</platforms>
                     <distributionFileList>
-                        <distributionDirectory>
-                            <excludeFiles>src/*;archives/*;scm/*</excludeFiles>
-                            <origin>/opt/sm</origin>
-                        </distributionDirectory>
+                        <distributionFile>
+                            <origin>/etc/profile.d/rvm.sh</origin>
+                        </distributionFile>
                     </distributionFileList>
                 </folder>
             </folderList>
