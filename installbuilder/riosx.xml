@@ -90,13 +90,24 @@
                     </distributionFileList>
                 </folder>
                 <folder>
-                    <description>RVM Config</description>
+                    <description>RVM Config - loader</description>
                     <destination>/etc/profile.d</destination>
-                    <name>rvm_conf</name>
+                    <name>rvm_conf_sh</name>
                     <platforms>all</platforms>
                     <distributionFileList>
                         <distributionFile>
                             <origin>/etc/profile.d/rvm.sh</origin>
+                        </distributionFile>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>RVM Config - config</description>
+                    <destination>/etc/</destination>
+                    <name>rvm_conf_rc</name>
+                    <platforms>all</platforms>
+                    <distributionFileList>
+                        <distributionFile>
+                            <origin>/etc/rvmrc</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
