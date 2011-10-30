@@ -29,7 +29,7 @@ rix.start()
   rix.sm.install.pkg gcc --enable-languages=c++
 
   rix.rvm.install
-  for var in 1.9.2 jruby rbx
+  for var in 1.9.2 #jruby rbx
   do
     rix.rvm.install.ruby $var
   done
