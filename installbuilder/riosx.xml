@@ -114,6 +114,12 @@
             </folderList>
         </component>
     </componentList>
+    <preInstallationActionList>
+        <addGroup>
+            <abortOnError>1</abortOnError>
+            <groupname>rvm</groupname>
+        </addGroup>
+    </preInstallationActionList>
     <compressionAlgorithm>lzma</compressionAlgorithm>
     <defaultUnixDirectoryPermissions>775</defaultUnixDirectoryPermissions>
     <defaultUnixFilePermissions>664</defaultUnixFilePermissions>
