@@ -20,7 +20,6 @@ rix.start()
   do
     rix.sm.install.set $var
   done
-  PATH="/opt/sm/bin:/opt/sm/pkg/active/bin:/opt/sm/pkg/active/sbin:$PATH"
   for var in zlib ncurses readline binutils \
     libyaml libxml2 libxslt libffi libiconv \
     autoconf automake make m4 \

@@ -2,7 +2,7 @@
 
 sm()
 {
-  env -i "${__initial_env[@]}" /opt/sm/bin/sm $@
+  env -i "${__initial_env[@]}" PATH="/opt/sm/bin:/opt/sm/pkg/active/bin:/opt/sm/pkg/active/sbin:$PATH" /opt/sm/bin/sm $@
 }
 
 rix.sm.install.set()
