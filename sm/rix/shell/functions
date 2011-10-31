@@ -9,6 +9,8 @@ rix_initialize()
 rix.start()
 {
   local var
+  export PATH
+
   trace_filter action
   log "Rails Installer uniX - preparation script - start"
   log step "backup sm/rvm"      rix.old_install.backup
