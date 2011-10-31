@@ -51,7 +51,8 @@
                     <platforms>all</platforms>
                     <distributionFileList>
                         <distributionDirectory>
-                            <excludeFiles>src/*;archives/*;scm/*</excludeFiles>
+                            <allowWildcards>1</allowWildcards>
+                            <excludeFiles>/opt/sm/src/*;/opt/sm/archives/*;/opt/sm/scm/*</excludeFiles>
                             <origin>/opt/sm</origin>
                         </distributionDirectory>
                     </distributionFileList>
@@ -84,7 +85,8 @@
                     <platforms>all</platforms>
                     <distributionFileList>
                         <distributionDirectory>
-                            <excludeFiles>repos/*;archives/*;src/*</excludeFiles>
+                            <allowWildcards>1</allowWildcards>
+                            <excludeFiles>/usr/local/rvm/repos/*;/usr/local/rvm/archives/*;/usr/local/rvm/src/*</excludeFiles>
                             <origin>/usr/local/rvm</origin>
                         </distributionDirectory>
                     </distributionFileList>
