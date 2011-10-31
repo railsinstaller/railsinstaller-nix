@@ -114,12 +114,39 @@
             </folderList>
         </component>
     </componentList>
+    <initializationActionList>
+        <setInstallerVariableFromScriptOutput>
+            <exec>awk</exec>
+            <execArgs>-F: '{if ($3&gt;=500 &amp;&amp; $3&lt;=9999) print $1; }' /etc/passwd</execArgs>
+            <name>user_list</name>
+            <show>0</show>
+            <showMessageOnError>0</showMessageOnError>
+            <ruleList>
+                <platformTest type="linux"/>
+            </ruleList>
+        </setInstallerVariableFromScriptOutput>
+    </initializationActionList>
     <preInstallationActionList>
         <addGroup>
             <abortOnError>1</abortOnError>
             <groupname>rvm</groupname>
         </addGroup>
     </preInstallationActionList>
+    <postInstallationActionList>
+        <showInfo>
+            <text>Adding users to group 'rvm': ${user_list}.</text>
+        </showInfo>
+        <foreach>
+            <values>${user_list}</values>
+            <variables>user_name</variables>
+            <actionList>
+                <addGroupToUser>
+                    <groupname>rvm</groupname>
+                    <username>${user_name}</username>
+                </addGroupToUser>
+            </actionList>
+        </foreach>
+    </postInstallationActionList>
     <compressionAlgorithm>lzma</compressionAlgorithm>
     <defaultUnixDirectoryPermissions>775</defaultUnixDirectoryPermissions>
     <defaultUnixFilePermissions>664</defaultUnixFilePermissions>
