@@ -51,13 +51,10 @@
                     <platforms>all</platforms>
                     <distributionFileList>
                         <distributionDirectory>
-                            <allowWildcards>1</allowWildcards>
-                            <excludeFiles>
-                              /opt/sm/src/*
-                              /opt/sm/archives/*
-                              /opt/sm/scm/*
-                            </excludeFiles>
                             <origin>/opt/sm</origin>
+                            <onPackingFilterList>
+                                <fileNameFilter logic="does_not_match" pattern="/opt/sm/src/*;/opt/sm/archives/*;/opt/sm/scm/*"/>
+                            </onPackingFilterList>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -89,13 +86,10 @@
                     <platforms>all</platforms>
                     <distributionFileList>
                         <distributionDirectory>
-                            <allowWildcards>1</allowWildcards>
-                            <excludeFiles>
-                              /usr/local/rvm/repos/*
-                              /usr/local/rvm/archives/*
-                              /usr/local/rvm/src/*
-                            </excludeFiles>
                             <origin>/usr/local/rvm</origin>
+                            <onPackingFilterList>
+                                <fileNameFilter logic="does_not_match" pattern="/usr/local/rvm/repos/*;/usr/local/rvm/archives/*;/usr/local/rvm/src/*"/>
+                            </onPackingFilterList>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
