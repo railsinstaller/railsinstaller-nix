@@ -24,8 +24,7 @@ rix.start()
     libyaml libxml2 libxslt libffi libiconv \
     autoconf automake make m4 \
     openssl sqlite3 expat curl git \
-    gmp mpfr mpc \
-    libc zsh
+    gmp mpfr mpc zsh
   do
     rix.sm.install.pkg $var
   done
