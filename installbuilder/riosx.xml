@@ -1,7 +1,7 @@
 <project>
     <shortName>riosx</shortName>
-    <fullName>Rails Installer OSX</fullName>
-    <version>0.9.1</version>
+    <fullName>RailsInstaller</fullName>
+    <version>0.9.2</version>
     <wrapLicenseFileText>0</wrapLicenseFileText>
     <allowLanguageSelection>1</allowLanguageSelection>
     <componentList>
@@ -138,6 +138,66 @@
                 <platformTest type="linux"/>
             </ruleList>
         </setInstallerVariableFromScriptOutput>
+        <setInstallerVariableFromScriptOutput>
+            <exec>sh</exec>
+            <execArgs>-c "dscacheutil -q user | awk -F: '{if (\$1 == \"name\") name=\$2 ; if (\$1== \"uid\" &amp;&amp; \$2 &gt; 500) print name;}'|grep -Eo [[:alnum:]_-]+"</execArgs>
+            <name>user_list</name>
+            <show>0</show>
+            <showMessageOnError>0</showMessageOnError>
+            <ruleList>
+                <platformTest type="osx-intel"/>
+            </ruleList>
+        </setInstallerVariableFromScriptOutput>
+        <setInstallerVariableFromScriptOutput>
+            <abortOnError>0</abortOnError>
+            <exec>sh</exec>
+            <execArgs>-c "who | awk '{print \$1}' | grep -v '^root$' | sort -u"</execArgs>
+            <name>logged_in</name>
+        </setInstallerVariableFromScriptOutput>
+        <setInstallerVariableFromScriptOutput>
+            <abortOnError>0</abortOnError>
+            <exec>sh</exec>
+            <execArgs>-c "who | awk '{print \$1}' | grep -v '^root$' | head -n 1"</execArgs>
+            <name>selected_user</name>
+        </setInstallerVariableFromScriptOutput>
+        <setInstallerVariableFromScriptOutput>
+            <abortOnError>0</abortOnError>
+            <exec>sh</exec>
+            <execArgs>-c "who | awk '{print \$1}' | grep -v '^root$' | sort -u | wc -l"</execArgs>
+            <name>logged_in_count</name>
+        </setInstallerVariableFromScriptOutput>
+        <setInstallerVariableFromScriptOutput>
+            <abortOnError>0</abortOnError>
+            <exec>sudo</exec>
+            <execArgs>su - ${selected_user} -c "git config --global user.name"</execArgs>
+            <name>git_username</name>
+            <ruleList>
+                <compareValues>
+                    <logic>equals</logic>
+                    <value1>${logged_in_count}</value1>
+                    <value2>1</value2>
+                </compareValues>
+            </ruleList>
+        </setInstallerVariableFromScriptOutput>
+        <setInstallerVariableFromScriptOutput>
+            <abortOnError>0</abortOnError>
+            <exec>sudo</exec>
+            <execArgs>su - ${selected_user} -c "git config --global user.email"</execArgs>
+            <name>git_email</name>
+            <ruleList>
+                <compareValues>
+                    <logic>equals</logic>
+                    <value1>${logged_in_count}</value1>
+                    <value2>1</value2>
+                </compareValues>
+            </ruleList>
+        </setInstallerVariableFromScriptOutput>
+        <consoleWrite>
+            <text>Found users:${user_list}:
+Logged in users:${logged_in}:
+Selected:${selected_user}: count:${logged_in_count}:
+</text>
+        </consoleWrite>
     </initializationActionList>
     <preInstallationActionList>
         <addGroup>
@@ -146,16 +206,29 @@
         </addGroup>
     </preInstallationActionList>
     <postInstallationActionList>
-        <showInfo>
-            <text>Adding users to group 'rvm': ${user_list}.</text>
-        </showInfo>
-        <foreach>
-            <values>${user_list}</values>
-            <variables>user_name</variables>
+        <runProgram>
+            <explanation>Setting git user name</explanation>
+            <program>sudo</program>
+            <programArguments>su - ${selected_user} -c "git config --global user.name \"${git_username}\""</programArguments>
+        </runProgram>
+        <runProgram>
+            <explanation>Setting git user email</explanation>
+            <program>sudo</program>
+            <programArguments>su - ${selected_user} -c "git config --global user.email \"${git_email}\""</programArguments>
+        </runProgram>
+        <foreach values="${user_list}" variables="user_name">
             <actionList>
                 <addGroupToUser>
+                    <abortOnError>0</abortOnError>
                     <groupname>rvm</groupname>
+                    <showMessageOnError>0</showMessageOnError>
                     <username>${user_name}</username>
+                    <onErrorActionList>
+                        <consoleWrite>
+                            <text>Could not add user '${user_name}' to group 'rvm'.
+</text>
+                        </consoleWrite>
+                    </onErrorActionList>
                 </addGroupToUser>
             </actionList>
         </foreach>
@@ -166,7 +239,6 @@
     <defaultUnixGroup>rvm</defaultUnixGroup>
     <enableRollback>1</enableRollback>
     <enableTimestamp>1</enableTimestamp>
-    <requireInstallationByRootUser>1</requireInstallationByRootUser>
     <uninstallerDirectory>/opt/rix</uninstallerDirectory>
     <vendor>Rails Installer</vendor>
     <parameterList>
@@ -177,6 +249,39 @@
             <value></value>
             <default></default>
             <parameterList>
+                <choiceParameter>
+                    <name>selected_user</name>
+                    <description>Select user</description>
+                    <explanation></explanation>
+                    <value></value>
+                    <default>${selected_user}</default>
+                    <allowEmptyValue>0</allowEmptyValue>
+                    <displayType>combobox</displayType>
+                    <ordering>default</ordering>
+                    <width>30</width>
+                    <preShowPageActionList>
+                        <removeChoiceOptions name="selected_user">
+                            <options></options>
+                        </removeChoiceOptions>
+                        <setInstallerVariable name="choiceText" value=""/>
+                        <foreach values="${logged_in}" variables="user_name">
+                            <actionList>
+                                <setInstallerVariable name="choiceText" value="${choiceText}&#xA;${user_name}=${user_name}"/>
+                            </actionList>
+                        </foreach>
+                        <addChoiceOptionsFromText>
+                            <name>selected_user</name>
+                            <text>${choiceText}</text>
+                        </addChoiceOptionsFromText>
+                    </preShowPageActionList>
+                    <ruleList>
+                        <compareValues>
+                            <logic>does_not_equal</logic>
+                            <value1>${logged_in_count}</value1>
+                            <value2>1</value2>
+                        </compareValues>
+                    </ruleList>
+                </choiceParameter>
                 <stringParameter>
                     <name>git_username</name>
                     <description>Full name</description>
@@ -196,6 +301,12 @@
                     <width>30</width>
                 </stringParameter>
             </parameterList>
+            <postShowPageActionList>
+                <consoleWrite>
+                    <text>Git - selected_user:${selected_user}: git_username:${git_username}: git_email:${git_email}:
+</text>
+                </consoleWrite>
+            </postShowPageActionList>
         </parameterGroup>
     </parameterList>
 </project>
