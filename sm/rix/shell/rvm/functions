@@ -53,10 +53,12 @@ rix.rvm.install()
     __status=0
     PATH=/usr/local/rvm/bin:$PATH
     log step success
+    popd >/dev/null
   else
     log step failed
+    popd >/dev/null
+    return 1
   fi
-  popd >/dev/null
 
   local _rvm_path
   if [[ -n "$SUDO_USER" ]]
