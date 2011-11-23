@@ -31,11 +31,11 @@ rix.start()
   rix.sm.install.pkg gcc --enable-languages=c++
 
   rix.rvm.install
-  for var in 1.9.2 #jruby rbx
+  for var in 1.9.3 #jruby rbx
   do
     rix.rvm.install.ruby $var
   done
-  rix.rvm.default.ruby 1.9.2
+  rix.rvm.default.ruby 1.9.3
   rix.rvm.install.rails
 
   $installbuilder_path/bin/builder build $initial_pwd/installbuilder/riosx.xml
