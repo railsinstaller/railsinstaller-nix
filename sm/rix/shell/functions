@@ -1,5 +1,12 @@
 #!/bin/sh
 
+if ! which ldoconfig >/dev/null
+then # fake ldconfig on darwin
+  ldconfig()
+  {
+  }
+fi
+
 rix_initialize()
 {
   export logs=$initial_pwd/log/$timestamp
