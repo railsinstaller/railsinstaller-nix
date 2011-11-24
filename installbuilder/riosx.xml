@@ -169,8 +169,9 @@
         <setInstallerVariableFromScriptOutput>
             <abortOnError>0</abortOnError>
             <exec>sudo</exec>
-            <execArgs>su - ${selected_user} -c "git config --global user.name"</execArgs>
+            <execArgs>su ${selected_user} -c "git config --global user.name"</execArgs>
             <name>git_username</name>
+            <showMessageOnError>0</showMessageOnError>
             <ruleList>
                 <compareValues>
                     <logic>equals</logic>
@@ -182,8 +183,9 @@
         <setInstallerVariableFromScriptOutput>
             <abortOnError>0</abortOnError>
             <exec>sudo</exec>
-            <execArgs>su - ${selected_user} -c "git config --global user.email"</execArgs>
+            <execArgs>su ${selected_user} -c "git config --global user.email"</execArgs>
             <name>git_email</name>
+            <showMessageOnError>0</showMessageOnError>
             <ruleList>
                 <compareValues>
                     <logic>equals</logic>
@@ -209,12 +211,12 @@ Selected:${selected_user}: count:${logged_in_count}:
         <runProgram>
             <explanation>Setting git user name</explanation>
             <program>sudo</program>
-            <programArguments>su - ${selected_user} -c "git config --global user.name \"${git_username}\""</programArguments>
+            <programArguments>su ${selected_user} -c "git config --global user.name \"${git_username}\""</programArguments>
         </runProgram>
         <runProgram>
             <explanation>Setting git user email</explanation>
             <program>sudo</program>
-            <programArguments>su - ${selected_user} -c "git config --global user.email \"${git_email}\""</programArguments>
+            <programArguments>su ${selected_user} -c "git config --global user.email \"${git_email}\""</programArguments>
         </runProgram>
         <foreach values="${user_list}" variables="user_name">
             <actionList>
@@ -239,6 +241,7 @@ Selected:${selected_user}: count:${logged_in_count}:
     <defaultUnixGroup>rvm</defaultUnixGroup>
     <enableRollback>1</enableRollback>
     <enableTimestamp>1</enableTimestamp>
+    <requireInstallationByRootUser>1</requireInstallationByRootUser>
     <uninstallerDirectory>/opt/rix</uninstallerDirectory>
     <vendor>Rails Installer</vendor>
     <parameterList>
