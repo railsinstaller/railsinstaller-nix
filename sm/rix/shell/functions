@@ -27,11 +27,11 @@ rix.start()
   do
     rix.sm.install.set $var
   done
-  for var in zlib ncurses ncursesw readline m4 binutils \
+  for var in zlib ncurses ncursesw readline \
     libyaml libxml2 libxslt libffi libiconv \
-    autoconf automake make \
     openssl sqlite3 expat curl git \
-    gmp mpfr mpc zsh
+    gmp mpfr mpc zsh \
+    m4 binutils autoconf automake make
   do
     rix.sm.install.pkg $var
   done
