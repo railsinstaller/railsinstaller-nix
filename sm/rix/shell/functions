@@ -9,8 +9,38 @@ fi
 
 rix_initialize()
 {
-  export logs=$initial_pwd/log/$timestamp
+  typeset -gx logs
+  typeset -gxa __rix_sm_sets __rix_sm_packages
+
+  logs=$initial_pwd/log/$timestamp
   mkdir -p "${logs}"
+
+  if os type is darwin
+  then
+    __rix_sm_sets=(
+      databases gnu libraries vcs tools shells
+    )
+    __rix_sm_packages=(
+      zlib ncurses ncursesw readline
+      libyaml libxml2 libxslt libffi libiconv
+      openssl sqlite3 expat curl git zsh
+    )
+  elif os type is linux
+  then
+    __rix_sm_sets=(
+      databases gnu languages libraries tools vcs shells
+    )
+    __rix_sm_packages=(
+      zlib ncurses ncursesw readline binutils
+      libyaml libxml2 libxslt libffi libiconv
+      autoconf automake make m4
+      openssl sqlite3 expat curl git
+      gmp mpfr mpc zsh
+    )
+  else
+    log error "RIX is designed to be built only on darwin or linux."
+    exit 1
+  fi
 }
 
 rix.start()
@@ -20,28 +50,26 @@ rix.start()
 
   trace_filter action
   log "Rails Installer uniX - preparation script - start"
-  log step "backup sm/rvm"      rix.old_install.backup
+  log step "backup sm/rvm" rix.old_install.backup
 
   rix.sm.install
-  for var in databases gnu languages libraries tools vcs shells
-  do
-    rix.sm.install.set $var
+
+  for var in "${__rix_sm_sets[@]}"
+  do rix.sm.install.set $var
   done
-  for var in zlib ncurses ncursesw readline binutils \
-    libyaml libxml2 libxslt libffi libiconv \
-    autoconf automake make m4 \
-    openssl sqlite3 expat curl git \
-    gmp mpfr mpc zsh
-  do
-    rix.sm.install.pkg $var
+
+  for var in "${__rix_sm_packages[@]}"
+  do rix.sm.install.pkg $var
   done
+
   rix.sm.install.pkg gcc --enable-languages=c++
 
   rix.rvm.install
+
   for var in 1.9.3 #jruby rbx
-  do
-    rix.rvm.install.ruby $var
+  do rix.rvm.install.ruby $var
   done
+
   rix.rvm.default.ruby 1.9.3
   rix.rvm.install.rails
 
