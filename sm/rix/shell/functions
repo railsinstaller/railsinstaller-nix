@@ -56,6 +56,7 @@ rix.start()
 
   for var in "${__rix_sm_sets[@]}"
   do rix.sm.install.set $var
+  done
 
   for var in "${__rix_sm_packages[@]}"
   do rix.sm.install.pkg $var
