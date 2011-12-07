@@ -20,7 +20,7 @@ rix.sm.install.pkg()
 
 rix.sm.install.gcc.darwin()
 {
-  warn "gcc installation on darwin not yet possible"
+  log warn "gcc installation on darwin not yet possible"
 }
 
 rix.sm.install.gcc.linux()
