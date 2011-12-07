@@ -62,7 +62,7 @@ rix.start()
   do rix.sm.install.pkg $var
   done
 
-  rix.sm.install.pkg gcc --enable-languages=c++
+  rix.sm.install.gcc.$(os type)
 
   rix.rvm.install
 

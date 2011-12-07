@@ -18,6 +18,16 @@ rix.sm.install.pkg()
   sm $name install "$@"
 }
 
+rix.sm.install.gcc.darwin()
+{
+  warn "gcc installation on darwin not yet possible"
+}
+
+rix.sm.install.gcc.linux()
+{
+  rix.sm.install.pkg gcc --enable-languages=c++
+}
+
 rix.sm.install()
 {
   local log_step_message
