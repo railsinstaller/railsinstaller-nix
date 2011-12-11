@@ -1,7 +1,7 @@
 <project>
     <shortName>riosx</shortName>
     <fullName>RailsInstaller</fullName>
-    <version>0.9.2</version>
+    <version>0.9.3</version>
     <wrapLicenseFileText>0</wrapLicenseFileText>
     <allowLanguageSelection>1</allowLanguageSelection>
     <componentList>
@@ -35,6 +35,46 @@
                     </shortcutList>
                 </folder>
             </folderList>
+        </component>
+        <component>
+            <name>osx_gcc_installer</name>
+            <description>OSX GCC Installer</description>
+            <canBeEdited>0</canBeEdited>
+            <selected>1</selected>
+            <show>1</show>
+            <folderList>
+                <folder>
+                    <description>OSX GCC Installer pkg http://www.opensource.apple.com/release/developer-tools-41/</description>
+                    <destination>/opt/</destination>
+                    <name>osx_gcc_installer_pkg</name>
+                    <platforms>osx</platforms>
+                    <distributionFileList>
+                        <distributionFile>
+                            <origin>/opt/GCC-10.7-v2.pkg</origin>
+                        </distributionFile>
+                    </distributionFileList>
+                </folder>
+            </folderList>
+            <postInstallationActionList>
+                <showProgressDialog>
+                    <title>Apple Opensource Developer Tools 4.1</title>
+                    <actionList>
+                        <runProgram>
+                            <explanation>Running OSX GCC Installer</explanation>
+                            <program>sudo</program>
+                            <programArguments>installer -package /opt/GCC-10.7-v2.pkg -target /</programArguments>
+                            <ruleList>
+                                <platformTest type="osx-intel"/>
+                            </ruleList>
+                        </runProgram>
+                    </actionList>
+                </showProgressDialog>
+            </postInstallationActionList>
+            <shouldPackRuleList>
+                <platformTest>
+                    <type>osx-intel</type>
+                </platformTest>
+            </shouldPackRuleList>
         </component>
         <component>
             <name>sm_libs</name>

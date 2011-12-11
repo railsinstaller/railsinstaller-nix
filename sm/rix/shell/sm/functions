@@ -20,7 +20,16 @@ rix.sm.install.pkg()
 
 rix.sm.install.gcc.darwin()
 {
-  log warn "gcc installation on darwin not yet possible"
+  typeset instaler_md5
+  instaler_md5=df36aa87606feb99d0db9ac9a492819e
+  if [[ $(md5 -q /opt/GCC-10.7-v2.pkg 2>/dev/null) == $instaler_md5 ]]
+  then
+    log "Using existing OSX-GCC-Installer with md5=$instaler_md5"
+  else
+    log "Downloading OSX-GCC-Installer"
+    curl -kL https://github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg -o /opt/GCC-10.7-v2.pkg
+    [[ $(md5 -q /opt/GCC-10.7-v2.pkg 2>/dev/null) == $instaler_md5 ]]
+  fi
 }
 
 rix.sm.install.gcc.linux()
