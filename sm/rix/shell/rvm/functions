@@ -4,7 +4,7 @@ rix.rvm.install.rails()
 {
   log step "install rails"
   printf "\n"
-  if gem install rails $@ 2>&1 | tee $logs/install_rails | awk '{printf "."; flush}'
+  if gem install rails $@ 2>&1 | tee $logs/install_rails | awk '{printf "."; fflush}'
   then
     log step success
   else
