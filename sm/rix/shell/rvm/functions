@@ -26,21 +26,24 @@ rix.rvm.install.ruby()
 
 rix.rvm.default.ruby()
 {
-  log step "alias default ruby - $1"
   local _name
-  if rvm alias $1 default >/dev/null &&
-    [[ -r /usr/local/rvm/environments/default ]]
+  _name=$(/usr/local/rvm/bin/rvm $1 do rvm current)
+  log step "alias default ruby - $_name"
+  if rvm alias create default $_name && #>/dev/null &&
+    [[ -L /usr/local/rvm/environments/default ]]
   then
     log step success
   else
     log step failed
+    return 1
   fi
   log step "use default ruby"
-  if source /usr/local/rvm/environments/default
+  if builtin source "/usr/local/rvm/environments/default"
   then
     log step success
   else
     log step failed
+    return 1
   fi
 }
 
