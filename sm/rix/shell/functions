@@ -74,7 +74,7 @@ rix.start()
   rix.rvm.install.rails
 
   $installbuilder_path/bin/builder build $initial_pwd/installbuilder/riosx.xml
-  ls "$installbuilder_path/output"
+  find "$installbuilder_path/output"
 }
 
 rix.end()

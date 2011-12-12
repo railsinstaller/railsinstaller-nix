@@ -26,16 +26,17 @@ rix.rvm.install.ruby()
 
 rix.rvm.default.ruby()
 {
-  log step "default ruby - $1"
+  log step "alias default ruby - $1"
   local _name
-  if _name=$( rvm --default use $@  | awk '{print $2}' )
+  if rvm alias $1 default >/dev/null &&
+    [[ -r /usr/local/rvm/environments/default ]]
   then
     log step success
   else
     log step failed
   fi
-  log step "use ruby - $1"
-  if source /usr/local/rvm/environments/${_name##*/}
+  log step "use default ruby"
+  if source /usr/local/rvm/environments/default
   then
     log step success
   else
@@ -48,7 +49,8 @@ rix.rvm.install()
   typeset __status
   log step "install rvm"
   pushd $rvm_local_path >/dev/null
-  if bash -e ./install >$logs/install_rvm 2>&1
+  if bash -e ./install >$logs/install_rvm 2>&1 &&
+    [[ -d /usr/local/rvm/bin ]]
   then
     __status=0
     PATH=/usr/local/rvm/bin:$PATH
