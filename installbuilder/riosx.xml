@@ -37,14 +37,74 @@
             </folderList>
         </component>
         <component>
-            <name>osx_gcc_installer</name>
-            <description>OSX GCC Installer</description>
+            <name>osx_gcc_installer_10_6</name>
+            <description>OSX GCC Installer 10.6</description>
             <canBeEdited>0</canBeEdited>
             <selected>1</selected>
             <show>1</show>
             <folderList>
                 <folder>
-                    <description>OSX GCC Installer pkg http://www.opensource.apple.com/release/developer-tools-41/</description>
+                    <description>OSX GCC Installer 10.6 pkg http://www.opensource.apple.com/release/developer-tools-41/</description>
+                    <destination>/opt/</destination>
+                    <name>osx_gcc_installer_pkg</name>
+                    <platforms>osx</platforms>
+                    <distributionFileList>
+                        <distributionFile>
+                            <origin>/opt/GCC-10.6.pkg</origin>
+                        </distributionFile>
+                    </distributionFileList>
+                </folder>
+            </folderList>
+            <postInstallationActionList>
+                <showProgressDialog>
+                    <title>Apple Opensource Developer Tools 4.1</title>
+                    <actionList>
+                        <runProgram>
+                            <explanation>Running OSX GCC Installer</explanation>
+                            <program>sudo</program>
+                            <programArguments>installer -package /opt/GCC-10.6.pkg -target /</programArguments>
+                            <ruleList>
+                                <platformTest type="osx-intel"/>
+                            </ruleList>
+                        </runProgram>
+                    </actionList>
+                </showProgressDialog>
+            </postInstallationActionList>
+            <postUninstallationActionList>
+                <showProgressDialog>
+                    <title>Uninstalling Apple Opensource Developer Tools 4.1</title>
+                    <actionList>
+                        <runProgram>
+                            <explanation>Uninstalling OSX GCC Installer</explanation>
+                            <program>sudo</program>
+                            <programArguments>/Library/Developer/Shared/uninstall-devtools</programArguments>
+                            <ruleList>
+                                <platformTest type="osx-intel"/>
+                            </ruleList>
+                        </runProgram>
+                    </actionList>
+                </showProgressDialog>
+            </postUninstallationActionList>
+            <shouldPackRuleList>
+                <platformTest>
+                    <type>osx-intel</type>
+                </platformTest>
+                <compareText>
+                    <logic>equals</logic>
+                    <text>${osx_target}</text>
+                    <value>10.6</value>
+                </compareText>
+            </shouldPackRuleList>
+        </component>
+        <component>
+            <name>osx_gcc_installer_10_7</name>
+            <description>OSX GCC Installer 10.7</description>
+            <canBeEdited>0</canBeEdited>
+            <selected>1</selected>
+            <show>1</show>
+            <folderList>
+                <folder>
+                    <description>OSX GCC Installer 10.7 pkg http://www.opensource.apple.com/release/developer-tools-41/</description>
                     <destination>/opt/</destination>
                     <name>osx_gcc_installer_pkg</name>
                     <platforms>osx</platforms>
@@ -89,6 +149,11 @@
                 <platformTest>
                     <type>osx-intel</type>
                 </platformTest>
+                <compareText>
+                    <logic>equals</logic>
+                    <text>${osx_target}</text>
+                    <value>10.7</value>
+                </compareText>
             </shouldPackRuleList>
         </component>
         <component>
@@ -395,5 +460,16 @@ Note that any Xcode installations are handled by the same uninstaller and will b
             </postShowPageActionList>
         </parameterGroup>
     </parameterList>
+    <platformOptionsList>
+        <platformOptions>
+            <shortName>RailsInstaller</shortName>
+            <installerFilename>${product_shortname}-${product_version}-${platform_name}-${osx_target}-installer.${platform_exec_suffix}</installerFilename>
+            <platform>osx</platform>
+        </platformOptions>
+        <platformOptions>
+            <shortName>RailsInstaller</shortName>
+            <platform>linux</platform>
+        </platformOptions>
+    </platformOptionsList>
 </project>
 

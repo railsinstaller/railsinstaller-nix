@@ -73,7 +73,13 @@ rix.start()
   rix.rvm.default.ruby 1.9.3
   rix.rvm.install.rails
 
-  $installbuilder_path/bin/builder build $initial_pwd/installbuilder/riosx.xml
+  if os type is darwin
+  then
+    $installbuilder_path/bin/builder build $initial_pwd/installbuilder/riosx.xml --setvars osx_target=10.6
+    $installbuilder_path/bin/builder build $initial_pwd/installbuilder/riosx.xml --setvars osx_target=10.7
+  else
+    $installbuilder_path/bin/builder build $initial_pwd/installbuilder/riosx.xml
+  fi
   find "$installbuilder_path/output"
 }
 
