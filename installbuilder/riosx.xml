@@ -1,7 +1,7 @@
 <project>
     <shortName>riosx</shortName>
     <fullName>RailsInstaller</fullName>
-    <version>0.9.3</version>
+    <version>0.9.4</version>
     <wrapLicenseFileText>0</wrapLicenseFileText>
     <allowLanguageSelection>1</allowLanguageSelection>
     <componentList>
@@ -70,6 +70,21 @@
                     </actionList>
                 </showProgressDialog>
             </postInstallationActionList>
+            <postUninstallationActionList>
+                <showProgressDialog>
+                    <title>Uninstalling Apple Opensource Developer Tools 4.1</title>
+                    <actionList>
+                        <runProgram>
+                            <explanation>Uninstalling OSX GCC Installer</explanation>
+                            <program>sudo</program>
+                            <programArguments>/Library/Developer/Shared/uninstall-devtools</programArguments>
+                            <ruleList>
+                                <platformTest type="osx-intel"/>
+                            </ruleList>
+                        </runProgram>
+                    </actionList>
+                </showProgressDialog>
+            </postUninstallationActionList>
             <shouldPackRuleList>
                 <platformTest>
                     <type>osx-intel</type>
@@ -275,6 +290,34 @@ Selected:${selected_user}: count:${logged_in_count}:
             </actionList>
         </foreach>
     </postInstallationActionList>
+    <preUninstallationActionList>
+        <showChoiceQuestion>
+            <defaultValue>Yes</defaultValue>
+            <explanation>OSX GCC Installer was installed as part of Rails Installer for OSX, please select if you want ot remove it now.
+
+Note that any Xcode installations are handled by the same uninstaller and will be also removed.</explanation>
+            <text>Do you want to uninstall OSX GCC Installer ?</text>
+            <title>Uninstall OSX GCC Installer ?</title>
+            <variable>uninstall_osx_gcc_installer</variable>
+            <optionList>
+                <option>
+                    <description>This will remove OSX GCC Installer and any Xcode installations</description>
+                    <image></image>
+                    <text>Yes</text>
+                    <value>1</value>
+                </option>
+                <option>
+                    <description>This will leave OSX GCC Installer on your disk </description>
+                    <image></image>
+                    <text>No</text>
+                    <value>0</value>
+                </option>
+            </optionList>
+            <ruleList>
+                <platformTest type="osx-intel"/>
+            </ruleList>
+        </showChoiceQuestion>
+    </preUninstallationActionList>
     <compressionAlgorithm>lzma</compressionAlgorithm>
     <defaultUnixDirectoryPermissions>775</defaultUnixDirectoryPermissions>
     <defaultUnixFilePermissions>664</defaultUnixFilePermissions>
