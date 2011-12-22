@@ -45,7 +45,7 @@ rix_initialize()
 
 rix.start()
 {
-  local var
+  typeset var
   export PATH
 
   trace_filter action
@@ -73,14 +73,30 @@ rix.start()
   rix.rvm.default.ruby 1.9.3
   rix.rvm.install.rails
 
+  rix.build.installer
+}
+
+rix.build.installer()
+{
+  typeset version osx_target
+  version=$( awk -F '[<>]' '/<version>/ {print $3}' installbuilder/riosx.xml )
+
   if os type is darwin
   then
-    $installbuilder_path/bin/builder build $initial_pwd/installbuilder/riosx.xml --setvars osx_target=10.6
-    $installbuilder_path/bin/builder build $initial_pwd/installbuilder/riosx.xml --setvars osx_target=10.7
+    for osx_target in 10.6 10.7
+    do
+      log "Building installer $version for OSX $osx_target."
+      $installbuilder_path/bin/builder build $initial_pwd/installbuilder/riosx.xml --setvars osx_target=${osx_target}
+      (
+        cd $installbuilder_path/output/
+        tar czvf RailsInstaller-${version}-osx-${osx_target}-installer.app.tar.gz RailsInstaller-${version}-osx-${osx_target}-installer.app
+      )
+    done
   else
     $installbuilder_path/bin/builder build $initial_pwd/installbuilder/riosx.xml
   fi
-  find "$installbuilder_path/output"
+
+  find "$installbuilder_path/output/*${version}*"  -maxdepth 1
 }
 
 rix.end()
