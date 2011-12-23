@@ -92,6 +92,64 @@
             </shouldPackRuleList>
         </component>
         <component>
+            <name>JewelryBox</name>
+            <description>JewelryBox</description>
+            <canBeEdited>0</canBeEdited>
+            <selected>1</selected>
+            <show>1</show>
+            <folderList>
+                <folder>
+                    <description>JewelryBox pkg http://jewelrybox.unfiniti.com/</description>
+                    <destination>/opt/rix/</destination>
+                    <name>JewelryBox_pkg</name>
+                    <platforms>osx</platforms>
+                    <distributionFileList>
+                        <distributionFile>
+                            <origin>/opt/rix/JewelryBox_v1.1.1.pkg</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>/opt/rix/pkg-install</origin>
+                        </distributionFile>
+                    </distributionFileList>
+                </folder>
+            </folderList>
+            <postInstallationActionList>
+                <showProgressDialog>
+                    <title>Installing JewelryBox - The official RVM GUI</title>
+                    <actionList>
+                        <runProgram>
+                            <explanation>Installing JewelryBox - The official RVM GUI</explanation>
+                            <program>sudo</program>
+                            <programArguments>sh -c "cd /opt/rix ; ./pkg-install JewelryBox_v1.1.1.pkg"</programArguments>
+                            <ruleList>
+                                <platformTest type="osx-intel"/>
+                            </ruleList>
+                        </runProgram>
+                    </actionList>
+                </showProgressDialog>
+            </postInstallationActionList>
+            <postUninstallationActionList>
+                <showProgressDialog>
+                    <title>Uninstalling JewelryBox - The official RVM GUI</title>
+                    <actionList>
+                        <runProgram>
+                            <explanation>Uninstalling JewelryBox - The official RVM GUI</explanation>
+                            <program>sudo</program>
+                            <programArguments>/opt/rix/uninstall_JewelryBox_v1_1_1_pkg.sh</programArguments>
+                            <ruleList>
+                                <platformTest type="osx-intel"/>
+                            </ruleList>
+                        </runProgram>
+                    </actionList>
+                </showProgressDialog>
+            </postUninstallationActionList>
+            <shouldPackRuleList>
+                <platformTest>
+                    <type>osx-intel</type>
+                </platformTest>
+            </shouldPackRuleList>
+        </component>
+        <component>
             <name>sm_libs</name>
             <description>SM - libs</description>
             <canBeEdited>0</canBeEdited>

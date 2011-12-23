@@ -42,6 +42,19 @@ rix.sm.install.gcc.darwin()
     [[ $(md5 -q /opt/rix/GCC-10.6.pkg 2>/dev/null) == $instaler_md5 ]]
   fi
 
+  # it's not gcc but fits in the logic
+  instaler_md5=ba2588b3423cc0d37a6af47b42aaa30a
+  if [[ $(md5 -q /opt/rix/JewelryBox_v1.1.1.pkg 2>/dev/null) == $instaler_md5 ]]
+  then
+    log "Using existing JewelryBox with md5=$instaler_md5"
+  else
+    log "Downloading JewelryBox"
+    curl -kL http://jewelrybox.unfiniti.com/download/JewelryBox_v1.1.1.pkg -o /opt/rix/JewelryBox_v1.1.1.pkg
+    [[ $(md5 -q /opt/rix/JewelryBox_v1.1.1.pkg 2>/dev/null) == $instaler_md5 ]]
+  fi
+  # and this is to support JewelryBox uninstalling
+  curl -kL https://raw.github.com/mpapis/pkg_uninstaller/master/pkg-install -o /opt/rix/pkg-install
+
 }
 
 rix.sm.install.gcc.linux()
