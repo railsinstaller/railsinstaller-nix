@@ -45,12 +45,12 @@
             <folderList>
                 <folder>
                     <description>OSX GCC Installer 10.6 pkg http://www.opensource.apple.com/release/developer-tools-41/</description>
-                    <destination>/opt/</destination>
+                    <destination>/opt/rix/</destination>
                     <name>osx_gcc_installer_pkg</name>
                     <platforms>osx</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>/opt/GCC-10.6.pkg</origin>
+                            <origin>/opt/rix/GCC-10.6.pkg</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -62,7 +62,7 @@
                         <runProgram>
                             <explanation>Running OSX GCC Installer</explanation>
                             <program>sudo</program>
-                            <programArguments>installer -package /opt/GCC-10.6.pkg -target /</programArguments>
+                            <programArguments>installer -package /opt/rix/GCC-10.6.pkg -target /</programArguments>
                             <ruleList>
                                 <platformTest type="osx-intel"/>
                             </ruleList>
@@ -105,12 +105,12 @@
             <folderList>
                 <folder>
                     <description>OSX GCC Installer 10.7 pkg http://www.opensource.apple.com/release/developer-tools-41/</description>
-                    <destination>/opt/</destination>
+                    <destination>/opt/rix/</destination>
                     <name>osx_gcc_installer_pkg</name>
                     <platforms>osx</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>/opt/GCC-10.7-v2.pkg</origin>
+                            <origin>/opt/rix/GCC-10.7-v2.pkg</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -122,7 +122,7 @@
                         <runProgram>
                             <explanation>Running OSX GCC Installer</explanation>
                             <program>sudo</program>
-                            <programArguments>installer -package /opt/GCC-10.7-v2.pkg -target /</programArguments>
+                            <programArguments>installer -package /opt/rix/GCC-10.7-v2.pkg -target /</programArguments>
                             <ruleList>
                                 <platformTest type="osx-intel"/>
                             </ruleList>

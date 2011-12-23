@@ -23,23 +23,23 @@ rix.sm.install.gcc.darwin()
   typeset instaler_md5
 
   instaler_md5=df36aa87606feb99d0db9ac9a492819e
-  if [[ $(md5 -q /opt/GCC-10.7-v2.pkg 2>/dev/null) == $instaler_md5 ]]
+  if [[ $(md5 -q /opt/rix/GCC-10.7-v2.pkg 2>/dev/null) == $instaler_md5 ]]
   then
     log "Using existing OSX-GCC-Installer 10.7-v2 with md5=$instaler_md5"
   else
     log "Downloading OSX-GCC-Installer 10.7-v2"
-    curl -kL https://github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg -o /opt/GCC-10.7-v2.pkg
-    [[ $(md5 -q /opt/GCC-10.7-v2.pkg 2>/dev/null) == $instaler_md5 ]]
+    curl -kL https://github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg -o /opt/rix/GCC-10.7-v2.pkg
+    [[ $(md5 -q /opt/rix/GCC-10.7-v2.pkg 2>/dev/null) == $instaler_md5 ]]
   fi
 
   instaler_md5=d1db5bab6a3f6b9f3b5577a130baeefa
-  if [[ $(md5 -q /opt/GCC-10.6.pkg 2>/dev/null) == $instaler_md5 ]]
+  if [[ $(md5 -q /opt/rix/GCC-10.6.pkg 2>/dev/null) == $instaler_md5 ]]
   then
     log "Using existing OSX-GCC-Installer 10.6 with md5=$instaler_md5"
   else
     log "Downloading OSX-GCC-Installer 10.6"
-    curl -kL https://github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.6.pkg -o /opt/GCC-10.6.pkg
-    [[ $(md5 -q /opt/GCC-10.6.pkg 2>/dev/null) == $instaler_md5 ]]
+    curl -kL https://github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.6.pkg -o /opt/rix/GCC-10.6.pkg
+    [[ $(md5 -q /opt/rix/GCC-10.6.pkg 2>/dev/null) == $instaler_md5 ]]
   fi
 
 }
