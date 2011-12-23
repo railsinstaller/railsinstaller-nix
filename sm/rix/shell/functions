@@ -78,7 +78,7 @@ rix.start()
 
 rix.build.installer()
 {
-  typeset version osx_target osx_gcc_installer_name
+  typeset version osx_target
   version=$( awk -F '[<>]' '/<version>/ {print $3}' installbuilder/riosx.xml )
 
   if os type is darwin
@@ -88,9 +88,9 @@ rix.build.installer()
       osx_gcc_installer_name=${osx_target#*:}
       osx_target=${osx_target%:*}
       log "Building installer $version for OSX $osx_target."
-      $installbuilder_path/bin/builder build $initial_pwd/installbuilder/riosx.xml --setvars \
-        osx_target=${osx_target} \
-        osx_gcc_installer_name=${osx_gcc_installer_name}
+      $installbuilder_path/bin/builder \
+        build $initial_pwd/installbuilder/riosx.xml \
+        --setvars osx_target=${osx_target}
 
       log "Packaging installer $version for OSX $osx_target."
       (

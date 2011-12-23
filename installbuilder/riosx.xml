@@ -37,20 +37,20 @@
             </folderList>
         </component>
         <component>
-            <name>osx_gcc_installer</name>
-            <description>OSX GCC Installer ${osx_gcc_installer_name}</description>
+            <name>osx_gcc_installer_10_6</name>
+            <description>OSX GCC Installer 10.6</description>
             <canBeEdited>0</canBeEdited>
             <selected>1</selected>
             <show>1</show>
             <folderList>
                 <folder>
-                    <description>OSX GCC Installer ${osx_gcc_installer_name} pkg http://www.opensource.apple.com/release/developer-tools-41/</description>
+                    <description>OSX GCC Installer 10.6 pkg http://www.opensource.apple.com/release/developer-tools-41/</description>
                     <destination>/opt/rix/</destination>
                     <name>osx_gcc_installer_pkg</name>
                     <platforms>osx</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>/opt/rix/GCC-${osx_gcc_installer_name}.pkg</origin>
+                            <origin>/opt/rix/GCC-10.6.pkg</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -62,7 +62,7 @@
                         <runProgram>
                             <explanation>Running OSX GCC Installer</explanation>
                             <program>sudo</program>
-                            <programArguments>installer -package /opt/rix/GCC-${osx_gcc_installer_name}.pkg -target /</programArguments>
+                            <programArguments>installer -package /opt/rix/GCC-10.6.pkg -target /</programArguments>
                             <ruleList>
                                 <platformTest type="osx-intel"/>
                             </ruleList>
@@ -89,6 +89,71 @@
                 <platformTest>
                     <type>osx-intel</type>
                 </platformTest>
+                <compareValues>
+                    <logic>equals</logic>
+                    <value1>${osx_target}</value1>
+                    <value2>10.6</value2>
+                </compareValues>
+            </shouldPackRuleList>
+        </component>
+        <component>
+            <name>osx_gcc_installer_10_7</name>
+            <description>OSX GCC Installer 10.7-v2</description>
+            <canBeEdited>0</canBeEdited>
+            <selected>1</selected>
+            <show>1</show>
+            <folderList>
+                <folder>
+                    <description>OSX GCC Installer 10.7-v2 pkg http://www.opensource.apple.com/release/developer-tools-41/</description>
+                    <destination>/opt/rix/</destination>
+                    <name>osx_gcc_installer_pkg</name>
+                    <platforms>osx</platforms>
+                    <distributionFileList>
+                        <distributionFile>
+                            <origin>/opt/rix/GCC-10.7-v2.pkg</origin>
+                        </distributionFile>
+                    </distributionFileList>
+                </folder>
+            </folderList>
+            <postInstallationActionList>
+                <showProgressDialog>
+                    <title>Apple Opensource Developer Tools 4.1</title>
+                    <actionList>
+                        <runProgram>
+                            <explanation>Running OSX GCC Installer</explanation>
+                            <program>sudo</program>
+                            <programArguments>installer -package /opt/rix/GCC-10.7-v2.pkg -target /</programArguments>
+                            <ruleList>
+                                <platformTest type="osx-intel"/>
+                            </ruleList>
+                        </runProgram>
+                    </actionList>
+                </showProgressDialog>
+            </postInstallationActionList>
+            <postUninstallationActionList>
+                <showProgressDialog>
+                    <title>Uninstalling Apple Opensource Developer Tools 4.1</title>
+                    <actionList>
+                        <runProgram>
+                            <explanation>Uninstalling OSX GCC Installer</explanation>
+                            <program>sudo</program>
+                            <programArguments>/Library/Developer/Shared/uninstall-devtools</programArguments>
+                            <ruleList>
+                                <platformTest type="osx-intel"/>
+                            </ruleList>
+                        </runProgram>
+                    </actionList>
+                </showProgressDialog>
+            </postUninstallationActionList>
+            <shouldPackRuleList>
+                <platformTest>
+                    <type>osx-intel</type>
+                </platformTest>
+                <compareValues>
+                    <logic>equals</logic>
+                    <value1>${osx_target}</value1>
+                    <value2>10.7</value2>
+                </compareValues>
             </shouldPackRuleList>
         </component>
         <component>
