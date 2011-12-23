@@ -87,16 +87,21 @@ rix.build.installer()
     do
       log "Building installer $version for OSX $osx_target."
       $installbuilder_path/bin/builder build $initial_pwd/installbuilder/riosx.xml --setvars osx_target=${osx_target}
+      log "Packaging installer $version for OSX $osx_target."
       (
         cd $installbuilder_path/output/
-        tar czvf RailsInstaller-${version}-osx-${osx_target}-installer.app.tar.gz RailsInstaller-${version}-osx-${osx_target}-installer.app
+        tar czf RailsInstaller-${version}-osx-${osx_target}-installer.app.tar.gz RailsInstaller-${version}-osx-${osx_target}-installer.app
       )
     done
-  else
+  elif os type is linux
+  then
+    log "Building installer $version for Linux."
     $installbuilder_path/bin/builder build $initial_pwd/installbuilder/riosx.xml
+  else
+    log error "Not supported platform - can not build installer."
   fi
 
-  find "$installbuilder_path/output/*${version}*"  -maxdepth 1
+  find $installbuilder_path/output/*${version}* -maxdepth 1
 }
 
 rix.end()
