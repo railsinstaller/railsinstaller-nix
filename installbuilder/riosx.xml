@@ -37,20 +37,20 @@
             </folderList>
         </component>
         <component>
-            <name>osx_gcc_installer_10_6</name>
-            <description>OSX GCC Installer 10.6</description>
+            <name>osx_gcc_installer</name>
+            <description>OSX GCC Installer ${osx_gcc_installer_name}</description>
             <canBeEdited>0</canBeEdited>
             <selected>1</selected>
             <show>1</show>
             <folderList>
                 <folder>
-                    <description>OSX GCC Installer 10.6 pkg http://www.opensource.apple.com/release/developer-tools-41/</description>
+                    <description>OSX GCC Installer ${osx_gcc_installer_name} pkg http://www.opensource.apple.com/release/developer-tools-41/</description>
                     <destination>/opt/rix/</destination>
                     <name>osx_gcc_installer_pkg</name>
                     <platforms>osx</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>/opt/rix/GCC-10.6.pkg</origin>
+                            <origin>/opt/rix/GCC-${osx_gcc_installer_name}.pkg</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -62,7 +62,7 @@
                         <runProgram>
                             <explanation>Running OSX GCC Installer</explanation>
                             <program>sudo</program>
-                            <programArguments>installer -package /opt/rix/GCC-10.6.pkg -target /</programArguments>
+                            <programArguments>installer -package /opt/rix/GCC-${osx_gcc_installer_name}.pkg -target /</programArguments>
                             <ruleList>
                                 <platformTest type="osx-intel"/>
                             </ruleList>
@@ -89,71 +89,6 @@
                 <platformTest>
                     <type>osx-intel</type>
                 </platformTest>
-                <compareText>
-                    <logic>equals</logic>
-                    <text>${osx_target}</text>
-                    <value>10.6</value>
-                </compareText>
-            </shouldPackRuleList>
-        </component>
-        <component>
-            <name>osx_gcc_installer_10_7</name>
-            <description>OSX GCC Installer 10.7</description>
-            <canBeEdited>0</canBeEdited>
-            <selected>1</selected>
-            <show>1</show>
-            <folderList>
-                <folder>
-                    <description>OSX GCC Installer 10.7 pkg http://www.opensource.apple.com/release/developer-tools-41/</description>
-                    <destination>/opt/rix/</destination>
-                    <name>osx_gcc_installer_pkg</name>
-                    <platforms>osx</platforms>
-                    <distributionFileList>
-                        <distributionFile>
-                            <origin>/opt/rix/GCC-10.7-v2.pkg</origin>
-                        </distributionFile>
-                    </distributionFileList>
-                </folder>
-            </folderList>
-            <postInstallationActionList>
-                <showProgressDialog>
-                    <title>Apple Opensource Developer Tools 4.1</title>
-                    <actionList>
-                        <runProgram>
-                            <explanation>Running OSX GCC Installer</explanation>
-                            <program>sudo</program>
-                            <programArguments>installer -package /opt/rix/GCC-10.7-v2.pkg -target /</programArguments>
-                            <ruleList>
-                                <platformTest type="osx-intel"/>
-                            </ruleList>
-                        </runProgram>
-                    </actionList>
-                </showProgressDialog>
-            </postInstallationActionList>
-            <postUninstallationActionList>
-                <showProgressDialog>
-                    <title>Uninstalling Apple Opensource Developer Tools 4.1</title>
-                    <actionList>
-                        <runProgram>
-                            <explanation>Uninstalling OSX GCC Installer</explanation>
-                            <program>sudo</program>
-                            <programArguments>/Library/Developer/Shared/uninstall-devtools</programArguments>
-                            <ruleList>
-                                <platformTest type="osx-intel"/>
-                            </ruleList>
-                        </runProgram>
-                    </actionList>
-                </showProgressDialog>
-            </postUninstallationActionList>
-            <shouldPackRuleList>
-                <platformTest>
-                    <type>osx-intel</type>
-                </platformTest>
-                <compareText>
-                    <logic>equals</logic>
-                    <text>${osx_target}</text>
-                    <value>10.7</value>
-                </compareText>
             </shouldPackRuleList>
         </component>
         <component>
@@ -320,6 +255,28 @@ Logged in users:${logged_in}:
 Selected:${selected_user}: count:${logged_in_count}:
 </text>
         </consoleWrite>
+        <setInstallerVariable>
+            <name>osx_gcc_installer_name</name>
+            <value>10.6</value>
+            <ruleList>
+                <compareText>
+                    <logic>equals</logic>
+                    <text>${osx_target}</text>
+                    <value>10.6</value>
+                </compareText>
+            </ruleList>
+        </setInstallerVariable>
+        <setInstallerVariable>
+            <name>osx_gcc_installer_name</name>
+            <value>10.7-v2</value>
+            <ruleList>
+                <compareText>
+                    <logic>equals</logic>
+                    <text>${osx_target}</text>
+                    <value>10.7</value>
+                </compareText>
+            </ruleList>
+        </setInstallerVariable>
     </initializationActionList>
     <preInstallationActionList>
         <addGroup>
