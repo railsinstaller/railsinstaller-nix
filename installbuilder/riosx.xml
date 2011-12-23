@@ -120,7 +120,7 @@
                         <runProgram>
                             <explanation>Installing JewelryBox - The official RVM GUI</explanation>
                             <program>sudo</program>
-                            <programArguments>sh -c "cd /opt/rix ; ./pkg-install JewelryBox_v1.1.1.pkg"</programArguments>
+                            <programArguments>sh -c "cd /opt/rix ; chmod +x pkg-install ; ./pkg-install JewelryBox_v1.1.1.pkg"</programArguments>
                             <ruleList>
                                 <platformTest type="osx-intel"/>
                             </ruleList>
