@@ -55,6 +55,27 @@
                     </distributionFileList>
                 </folder>
             </folderList>
+            <initializationActionList>
+                <actionGroup>
+                    <explanation>Checking system</explanation>
+                    <actionList>
+                        <showWarning>
+                            <text>This installer was build only for OSX 10.6, exiting now.</text>
+                        </showWarning>
+                        <exit>
+                            <exitCode>2</exitCode>
+                        </exit>
+                    </actionList>
+                    <ruleList>
+                        <compareText>
+                            <logic>equals</logic>
+                            <negate>1</negate>
+                            <text>${osx_major_version}</text>
+                            <value>10.6</value>
+                        </compareText>
+                    </ruleList>
+                </actionGroup>
+            </initializationActionList>
             <postInstallationActionList>
                 <showProgressDialog>
                     <title>Apple Opensource Developer Tools 4.1</title>
@@ -115,6 +136,27 @@
                     </distributionFileList>
                 </folder>
             </folderList>
+            <initializationActionList>
+                <actionGroup>
+                    <explanation>Checking system</explanation>
+                    <actionList>
+                        <showWarning>
+                            <text>This installer was build only for OSX 10.7, exiting now.</text>
+                        </showWarning>
+                        <exit>
+                            <exitCode>2</exitCode>
+                        </exit>
+                    </actionList>
+                    <ruleList>
+                        <compareText>
+                            <logic>equals</logic>
+                            <negate>1</negate>
+                            <text>${osx_major_version}</text>
+                            <value>10.7</value>
+                        </compareText>
+                    </ruleList>
+                </actionGroup>
+            </initializationActionList>
             <postInstallationActionList>
                 <showProgressDialog>
                     <title>Apple Opensource Developer Tools 4.1</title>
