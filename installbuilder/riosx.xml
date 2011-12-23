@@ -313,28 +313,6 @@ Logged in users:${logged_in}:
 Selected:${selected_user}: count:${logged_in_count}:
 </text>
         </consoleWrite>
-        <setInstallerVariable>
-            <name>osx_gcc_installer_name</name>
-            <value>10.6</value>
-            <ruleList>
-                <compareText>
-                    <logic>equals</logic>
-                    <text>${osx_target}</text>
-                    <value>10.6</value>
-                </compareText>
-            </ruleList>
-        </setInstallerVariable>
-        <setInstallerVariable>
-            <name>osx_gcc_installer_name</name>
-            <value>10.7-v2</value>
-            <ruleList>
-                <compareText>
-                    <logic>equals</logic>
-                    <text>${osx_target}</text>
-                    <value>10.7</value>
-                </compareText>
-            </ruleList>
-        </setInstallerVariable>
     </initializationActionList>
     <preInstallationActionList>
         <addGroup>

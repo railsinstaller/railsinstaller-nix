@@ -78,19 +78,26 @@ rix.start()
 
 rix.build.installer()
 {
-  typeset version osx_target
+  typeset version osx_target osx_gcc_installer_name
   version=$( awk -F '[<>]' '/<version>/ {print $3}' installbuilder/riosx.xml )
 
   if os type is darwin
   then
-    for osx_target in 10.6 10.7
+    for osx_target in 10.6:10.6 10.7:10.7-v2
     do
+      osx_gcc_installer_name=${osx_target#*:}
+      osx_target=${osx_target%:*}
       log "Building installer $version for OSX $osx_target."
-      $installbuilder_path/bin/builder build $initial_pwd/installbuilder/riosx.xml --setvars osx_target=${osx_target}
+      $installbuilder_path/bin/builder build $initial_pwd/installbuilder/riosx.xml --setvars \
+        osx_target=${osx_target} \
+        osx_gcc_installer_name=${osx_gcc_installer_name}
+
       log "Packaging installer $version for OSX $osx_target."
       (
         cd $installbuilder_path/output/
-        tar czf RailsInstaller-${version}-osx-${osx_target}-installer.app.tar.gz RailsInstaller-${version}-osx-${osx_target}-installer.app
+        tar czf \
+          RailsInstaller-${version}-osx-${osx_target}-installer.app.tar.gz \
+          RailsInstaller-${version}-osx-${osx_target}-installer.app
       )
     done
   elif os type is linux
