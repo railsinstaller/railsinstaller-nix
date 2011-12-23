@@ -83,10 +83,8 @@ rix.build.installer()
 
   if os type is darwin
   then
-    for osx_target in 10.6:10.6 10.7:10.7-v2
+    for osx_target in 10.6 10.7
     do
-      osx_gcc_installer_name=${osx_target#*:}
-      osx_target=${osx_target%:*}
       log "Building installer $version for OSX $osx_target."
       $installbuilder_path/bin/builder \
         build $initial_pwd/installbuilder/riosx.xml \
