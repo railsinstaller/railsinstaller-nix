@@ -483,6 +483,21 @@ Note that any Xcode installations are handled by the same uninstaller and will b
             </ruleList>
         </showChoiceQuestion>
     </preUninstallationActionList>
+    <postUninstallationActionList>
+        <showProgressDialog>
+            <title>Cleaning installation</title>
+            <actionList>
+                <runProgram>
+                    <explanation>Cleaning installation</explanation>
+                    <program>sudo</program>
+                    <programArguments>sh -c "rm -rf /opt/rix /opt/sm /usr/local/rvm /etc/rvmrc /etc/profile.d/rvm.sh"</programArguments>
+                </runProgram>
+            </actionList>
+        </showProgressDialog>
+        <deleteGroup>
+            <groupname>rvm</groupname>
+        </deleteGroup>
+    </postUninstallationActionList>
     <compressionAlgorithm>lzma</compressionAlgorithm>
     <defaultUnixDirectoryPermissions>775</defaultUnixDirectoryPermissions>
     <defaultUnixFilePermissions>664</defaultUnixFilePermissions>
