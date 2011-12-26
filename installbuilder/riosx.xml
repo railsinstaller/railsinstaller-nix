@@ -350,7 +350,7 @@
                 <runProgram>
                     <explanation>Ensuring rvm is set up properly.</explanation>
                     <program>sudo</program>
-                    <programArguments>sh -c "export rvm_path=/usr/local/rvm ; export rvm_group_name=rvm ; export rvm_auto_flag=1 ; source $rvm_path/scripts/functions/installer ; setup_etc_profile ; setup_rvmrc ; setup_rvm_path_permissions"</programArguments>
+                    <programArguments>sh -c "export rvm_path=/usr/local/rvm ; export rvm_group_name=rvm ; export rvm_auto_flag=1 ; source /usr/local/rvm/scripts/functions/installer ; setup_etc_profile ; setup_rvmrc ; setup_rvm_path_permissions"</programArguments>
                 </runProgram>
             </postInstallationActionList>
         </component>
