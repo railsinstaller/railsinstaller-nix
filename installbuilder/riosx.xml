@@ -1,7 +1,8 @@
 <project>
-    <shortName>riosx</shortName>
+    <shortName>RailsInstaller</shortName>
     <fullName>RailsInstaller</fullName>
     <version>0.9.5</version>
+    <readmeFile>${build_project_directory}/readme_${platform_name}.txt</readmeFile>
     <wrapLicenseFileText>0</wrapLicenseFileText>
     <allowLanguageSelection>1</allowLanguageSelection>
     <componentList>
@@ -584,13 +585,8 @@ Note that any Xcode installations are handled by the same uninstaller and will b
     </parameterList>
     <platformOptionsList>
         <platformOptions>
-            <shortName>RailsInstaller</shortName>
             <installerFilename>${product_shortname}-${product_version}-${platform_name}-${osx_target}-installer.${platform_exec_suffix}</installerFilename>
             <platform>osx</platform>
-        </platformOptions>
-        <platformOptions>
-            <shortName>RailsInstaller</shortName>
-            <platform>linux</platform>
         </platformOptions>
     </platformOptionsList>
 </project>
