@@ -96,7 +96,7 @@ rix.build.installer()
         tar czvf \
           RailsInstaller-${version}-osx-${osx_target}-installer.app.tar.gz \
           RailsInstaller-${version}-osx-${osx_target}-installer.app \
-          | log dotted
+          2>&1 | tee $logs/package_osx_${osx_target}_installer | log dotted
         printf "\n"
       )
     done
