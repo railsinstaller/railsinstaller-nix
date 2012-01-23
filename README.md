@@ -11,7 +11,7 @@ with no required prerequisites on a OS X system.
 ## Prerequisites - SM Framework & RVM
 
 Local copy is used to build installer, so any branch/version locally downloaded
-will be used. For quick configuration in ~/projects use:
+will be used. For quick configuration in ~/projects and with [installbuilder](http://installbuilder.bitrock.com/) use:
 
     ./prepare_local.sh ~/projects ~/installbuilder
 
@@ -21,7 +21,6 @@ Installer will automatically go through all required steps:
 
     sudo ./prepare.sh
 
-As the installer xml scrip is not included there will be no output of the process,
-to keep the prepared files use __no_clean variable, which will prevent the process from cleaning after itself:
+To keep the prepared files use __no_clean variable, which will prevent the process from cleaning after itself:
 
     sudo __no_clean=true ./prepare.sh
