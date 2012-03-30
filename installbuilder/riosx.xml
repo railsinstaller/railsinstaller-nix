@@ -248,7 +248,7 @@
                         <runProgram>
                             <explanation>Installing JewelryBox - The official RVM GUI</explanation>
                             <program>sudo</program>
-                            <programArguments>sh -c "cd /Applications ; unzip /opt/rix/JewelryBox_RIX.zip"</programArguments>
+                            <programArguments>sh -c "cd /Applications ; rm -rf JewelryBox.app ; unzip /opt/rix/JewelryBox_RIX.zip"</programArguments>
                             <ruleList>
                                 <platformTest type="osx-intel"/>
                             </ruleList>
