@@ -2,7 +2,8 @@
     <shortName>RailsInstaller</shortName>
     <fullName>RailsInstaller</fullName>
     <version>0.9.8</version>
-    <readmeFile>${build_project_directory}/readme_${platform_name}.txt</readmeFile>
+    <installerFilename>${product_shortname}-${product_version}-${platform_name}.${platform_exec_suffix}</installerFilename>
+    <readmeFile>${build_project_directory}/readme_${platform_name}.pdf</readmeFile>
     <wrapLicenseFileText>0</wrapLicenseFileText>
     <allowLanguageSelection>1</allowLanguageSelection>
     <componentList>
@@ -594,7 +595,7 @@ Note that any Xcode installations are handled by the same uninstaller and will b
     </parameterList>
     <platformOptionsList>
         <platformOptions>
-            <installerFilename>${product_shortname}-${product_version}-${platform_name}-${osx_target}-installer.${platform_exec_suffix}</installerFilename>
+            <installerFilename>${product_shortname}-${product_version}-${platform_name}-${osx_target}.${platform_exec_suffix}</installerFilename>
             <platform>osx</platform>
         </platformOptions>
     </platformOptionsList>

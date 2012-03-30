@@ -94,21 +94,23 @@ rix.build.installer()
       (
         cd $installbuilder_path/output/
         tar czvf \
-          RailsInstaller-${version}-osx-${osx_target}-installer.app.tar.gz \
-          RailsInstaller-${version}-osx-${osx_target}-installer.app \
+          RailsInstaller-${version}-osx-${osx_target}.app.tar.gz \
+          RailsInstaller-${version}-osx-${osx_target}.app \
           2>&1 | tee $logs/package_osx_${osx_target}_installer | log dotted
         printf "\n"
       )
+      scp $installbuilder_path/output/RailsInstaller-${version}-osx-${osx_target}.app.tar.gz rvm@rvm.io:~/shared/public/src/
+      log "- https://rvm.beginrescueend.com/src/RailsInstaller-${version}-osx-${osx_target}.app.tar.gz"
     done
   elif os type is linux
   then
     log "Building installer $version for Linux."
     $installbuilder_path/bin/builder build $initial_pwd/installbuilder/riosx.xml
+    scp $installbuilder_path/output/RailsInstaller-${version}-linux-x64.run rvm@rvm.io:~/shared/public/src/
+    log "- https://rvm.beginrescueend.com/src/RailsInstaller-${version}-linux-x64.run"
   else
     log error "Not supported platform - can not build installer."
   fi
-
-  find $installbuilder_path/output/*${version}* -maxdepth 0
 }
 
 rix.end()
