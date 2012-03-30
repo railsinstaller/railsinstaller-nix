@@ -5,7 +5,7 @@
 
 Whats included:
   RVM: Ruby Version Manager
-  JB:  Jewelery Box, the official RVM GUI
+  JB:  JewelryBox, the official RVM GUI
   SM:  Scripting Framework
   GCC: GNU Compiler Collection 
 
