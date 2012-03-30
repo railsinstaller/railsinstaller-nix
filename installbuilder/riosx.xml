@@ -213,10 +213,7 @@
                     <platforms>osx</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>/opt/rix/JewelryBox_v1.1.1.pkg</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>/opt/rix/pkg-install</origin>
+                            <origin>/opt/rix/JewelryBox_RIX.zip</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -228,7 +225,7 @@
                         <runProgram>
                             <explanation>Installing JewelryBox - The official RVM GUI</explanation>
                             <program>sudo</program>
-                            <programArguments>sh -c "cd /opt/rix ; chmod +x pkg-install ; ./pkg-install JewelryBox_v1.1.1.pkg"</programArguments>
+                            <programArguments>sh -c "cd /Applications ; unzip /opt/rix/JewelryBox_RIX.zip"</programArguments>
                             <ruleList>
                                 <platformTest type="osx-intel"/>
                             </ruleList>
@@ -243,7 +240,7 @@
                         <runProgram>
                             <explanation>Uninstalling JewelryBox - The official RVM GUI</explanation>
                             <program>sudo</program>
-                            <programArguments>/opt/rix/uninstall_JewelryBox_v1_1_1_pkg.sh</programArguments>
+                            <programArguments>rm -rf /Applications/JewelryBox.app</programArguments>
                             <ruleList>
                                 <platformTest type="osx-intel"/>
                             </ruleList>
