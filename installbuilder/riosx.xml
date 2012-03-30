@@ -301,7 +301,7 @@
                 <runProgram>
                     <explanation>Ensuring sm is sourced.</explanation>
                     <program>sudo</program>
-                    <programArguments>sh -c 'grep -E '/etc/profile.d/sm.sh|/etc/profile.d/\*' &lt;/etc/profile &gt;/dev/null || printf "\nsource /etc/profile.d/sm.sh\n" &gt; /etc/profile'</programArguments>
+                    <programArguments>sh -c 'grep -E "/etc/profile.d/sm.sh|/etc/profile.d/\*" &lt;/etc/profile &gt;/dev/null || printf "\nsource /etc/profile.d/sm.sh\n" &gt; /etc/profile'</programArguments>
                 </runProgram>
             </postInstallationActionList>
         </component>
@@ -359,7 +359,7 @@
                 <runProgram>
                     <explanation>Ensuring rvm is sourced.</explanation>
                     <program>sudo</program>
-                    <programArguments>sh -c 'grep -E '/etc/profile.d/rvm.sh|/etc/profile.d/\*' &lt;/etc/profile &gt;/dev/null || printf "\nsource /etc/profile.d/rvm.sh\n" &gt; /etc/profile'</programArguments>
+                    <programArguments>sh -c 'grep -E "/etc/profile.d/rvm.sh|/etc/profile.d/\*" &lt;/etc/profile &gt;/dev/null || printf "\nsource /etc/profile.d/rvm.sh\n" &gt; /etc/profile'</programArguments>
                 </runProgram>
             </postInstallationActionList>
         </component>
