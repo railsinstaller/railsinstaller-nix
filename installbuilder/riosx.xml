@@ -1,7 +1,7 @@
 <project>
     <shortName>RailsInstaller</shortName>
     <fullName>RailsInstaller</fullName>
-    <version>0.9.6</version>
+    <version>0.9.7</version>
     <readmeFile>${build_project_directory}/readme_${platform_name}.txt</readmeFile>
     <wrapLicenseFileText>0</wrapLicenseFileText>
     <allowLanguageSelection>1</allowLanguageSelection>
@@ -213,10 +213,7 @@
                     <platforms>osx</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>/opt/rix/JewelryBox_v1.1.1.pkg</origin>
-                        </distributionFile>
-                        <distributionFile>
-                            <origin>/opt/rix/pkg-install</origin>
+                            <origin>/opt/rix/JewelryBox_RIX.zip</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -228,7 +225,7 @@
                         <runProgram>
                             <explanation>Installing JewelryBox - The official RVM GUI</explanation>
                             <program>sudo</program>
-                            <programArguments>sh -c "cd /opt/rix ; chmod +x pkg-install ; ./pkg-install JewelryBox_v1.1.1.pkg"</programArguments>
+                            <programArguments>sh -c "cd /Applications ; unzip /opt/rix/JewelryBox_RIX.zip"</programArguments>
                             <ruleList>
                                 <platformTest type="osx-intel"/>
                             </ruleList>
@@ -243,7 +240,7 @@
                         <runProgram>
                             <explanation>Uninstalling JewelryBox - The official RVM GUI</explanation>
                             <program>sudo</program>
-                            <programArguments>/opt/rix/uninstall_JewelryBox_v1_1_1_pkg.sh</programArguments>
+                            <programArguments>rm -rf /Applications/JewelryBox.app</programArguments>
                             <ruleList>
                                 <platformTest type="osx-intel"/>
                             </ruleList>
@@ -300,6 +297,13 @@
                     </distributionFileList>
                 </folder>
             </folderList>
+            <postInstallationActionList>
+                <runProgram>
+                    <explanation>Ensuring sm is sourced.</explanation>
+                    <program>sudo</program>
+                    <programArguments>sh -c 'grep -E '/etc/profile.d/sm.sh|/etc/profile.d/\*' &lt;/etc/profile &gt;/dev/null || printf "\nsource /etc/profile.d/sm.sh\n" &gt; /etc/profile'</programArguments>
+                </runProgram>
+            </postInstallationActionList>
         </component>
         <component>
             <name>rvm_rubies</name>
@@ -351,6 +355,11 @@
                     <explanation>Ensuring rvm is set up properly.</explanation>
                     <program>sudo</program>
                     <programArguments>sh -c "export rvm_path=/usr/local/rvm ; export rvm_group_name=rvm ; export rvm_auto_flag=1 ; source /usr/local/rvm/scripts/functions/installer ; setup_etc_profile ; setup_rvmrc ; setup_rvm_path_permissions"</programArguments>
+                </runProgram>
+                <runProgram>
+                    <explanation>Ensuring rvm is sourced.</explanation>
+                    <program>sudo</program>
+                    <programArguments>sh -c 'grep -E '/etc/profile.d/rvm.sh|/etc/profile.d/\*' &lt;/etc/profile &gt;/dev/null || printf "\nsource /etc/profile.d/rvm.sh\n" &gt; /etc/profile'</programArguments>
                 </runProgram>
             </postInstallationActionList>
         </component>
