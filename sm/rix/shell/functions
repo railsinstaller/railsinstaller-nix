@@ -94,13 +94,13 @@ rix.build.installer()
       (
         cd $installbuilder_path/output/
         tar czvf \
-          RailsInstaller-${version}-osx-${osx_target}.app.tar.gz \
+          RailsInstaller-${version}-osx-${osx_target}.app.tgz \
           RailsInstaller-${version}-osx-${osx_target}.app \
           2>&1 | tee $logs/package_osx_${osx_target}_installer | log dotted
         printf "\n"
       )
-      scp $installbuilder_path/output/RailsInstaller-${version}-osx-${osx_target}.app.tar.gz rvm@rvm.io:~/shared/public/src/
-      log "- https://rvm.beginrescueend.com/src/RailsInstaller-${version}-osx-${osx_target}.app.tar.gz"
+      scp $installbuilder_path/output/RailsInstaller-${version}-osx-${osx_target}.app.tgz rvm@rvm.io:~/shared/public/src/
+      log "- https://rvm.beginrescueend.com/src/RailsInstaller-${version}-osx-${osx_target}.app.tgz"
     done
   elif os type is linux
   then
