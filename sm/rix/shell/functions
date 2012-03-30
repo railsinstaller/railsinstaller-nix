@@ -66,9 +66,9 @@ rix.start()
 
   rix.rvm.install
 
-  for var in 1.9.3 #jruby rbx
-  do rix.rvm.install.ruby $var
-  done
+  rix.rvm.install.ruby 1.9.3 --with-gcc=gcc-4.2
+  # rix.rvm.install.ruby jruby --1.9
+  # rix.rvm.install.ruby rbx --1.9
 
   rix.rvm.default.ruby 1.9.3
   rix.rvm.install.rails
