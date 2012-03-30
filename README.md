@@ -2,6 +2,9 @@
 
 Rails development environment installer for OS X
 
+Download the latest version: [ [0.9.8 - OSX 10.6](https://rvm.beginrescueend.com/src/RailsInstaller-0.9.8-osx-10.6.app.tgz) |
+ [0.9.8 - OSX 10.7](https://rvm.beginrescueend.com/src/RailsInstaller-0.9.8-osx-10.7.app.tgz) ]
+
 ## Overview
 
 The goal of this project is to generate an installer that when run
@@ -25,5 +28,3 @@ To keep the prepared files use __no_clean variable, which will prevent the proce
 
     sudo __no_clean=true ./prepare.sh
 
-Download the latest version for: [ [0.9.7 - OSX 10.6](https://rvm.beginrescueend.com/src/RailsInstaller-0.9.7-osx-10.6-installer.app.tar.gz) |
- [0.9.7 - OSX 10.7](https://rvm.beginrescueend.com/src/RailsInstaller-0.9.7-osx-10.7-installer.app.tar.gz) ]
