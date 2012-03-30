@@ -79,7 +79,7 @@ rix.start()
 rix.build.installer()
 {
   typeset version osx_target
-  version=$( awk -F '[<>]' '/<version>/ {print $3}' installbuilder/riosx.xml )
+  version=$( awk -F '[<>]' '/<version>/ {print $3}' $initial_pwd/installbuilder/riosx.xml )
 
   if os type is darwin
   then
