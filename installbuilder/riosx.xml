@@ -300,6 +300,13 @@
                     </distributionFileList>
                 </folder>
             </folderList>
+            <postInstallationActionList>
+                <runProgram>
+                    <explanation>Ensuring sm is sourced.</explanation>
+                    <program>sudo</program>
+                    <programArguments>sh -c 'grep -E '/etc/profile.d/sm.sh|/etc/profile.d/\*' &lt;/etc/profile &gt;/dev/null || printf "\nsource /etc/profile.d/sm.sh\n" &gt; /etc/profile'</programArguments>
+                </runProgram>
+            </postInstallationActionList>
         </component>
         <component>
             <name>rvm_rubies</name>
@@ -351,6 +358,11 @@
                     <explanation>Ensuring rvm is set up properly.</explanation>
                     <program>sudo</program>
                     <programArguments>sh -c "export rvm_path=/usr/local/rvm ; export rvm_group_name=rvm ; export rvm_auto_flag=1 ; source /usr/local/rvm/scripts/functions/installer ; setup_etc_profile ; setup_rvmrc ; setup_rvm_path_permissions"</programArguments>
+                </runProgram>
+                <runProgram>
+                    <explanation>Ensuring rvm is sourced.</explanation>
+                    <program>sudo</program>
+                    <programArguments>sh -c 'grep -E '/etc/profile.d/rvm.sh|/etc/profile.d/\*' &lt;/etc/profile &gt;/dev/null || printf "\nsource /etc/profile.d/rvm.sh\n" &gt; /etc/profile'</programArguments>
                 </runProgram>
             </postInstallationActionList>
         </component>
