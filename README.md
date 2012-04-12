@@ -2,8 +2,8 @@
 
 Rails development environment installer for OS X
 
-Download the latest version: [ [0.9.8 - OSX 10.6](https://rvm.beginrescueend.com/src/RailsInstaller-0.9.8-osx-10.6.app.tgz) |
- [0.9.8 - OSX 10.7](https://rvm.beginrescueend.com/src/RailsInstaller-0.9.8-osx-10.7.app.tgz) ]
+Download the latest version: [ [0.9.8 - OSX 10.6](https://rvm.io/src/RailsInstaller-0.9.8-osx-10.6.app.tgz) |
+ [0.9.8 - OSX 10.7](https://rvm.io/src/RailsInstaller-0.9.8-osx-10.7.app.tgz) ]
 
 ## Overview
 
@@ -28,3 +28,10 @@ To keep the prepared files use __no_clean variable, which will prevent the proce
 
     sudo __no_clean=true ./prepare.sh
 
+To forward ssh session to root:
+
+    time eval sudo /usr/bin/env $(env | grep ^SSH  | sed 's/=\(.*\)$/="\1"/') __no_clean=true ./prepare.sh
+
+And finally to use different license for building:
+
+    echo "export installbuilder_license=$HOME/installbuilder-license.xml" > /etc/rixrc
