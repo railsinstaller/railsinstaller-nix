@@ -88,6 +88,7 @@ rix.build.installer()
       log "Building installer $version for OSX $osx_target."
       $installbuilder_path/bin/builder \
         build $initial_pwd/installbuilder/riosx.xml \
+        ${installbuilder_license:+--license} ${installbuilder_license:-} \
         --setvars osx_target=${osx_target}
 
       log "Packaging installer $version for OSX $osx_target."
