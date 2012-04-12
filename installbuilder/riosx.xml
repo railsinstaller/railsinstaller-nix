@@ -549,6 +549,7 @@ Note that any Xcode installations are handled by the same uninstaller and will b
     <vendor>Rails Installer</vendor>
     <finalPageActionList>
         <runProgram>
+            <explanation>Open readme.pdf</explanation>
             <program>open</program>
             <programArguments>/opt/rix/readme_${platform_name}.pdf</programArguments>
         </runProgram>
@@ -628,4 +629,3 @@ Note that any Xcode installations are handled by the same uninstaller and will b
         </platformOptions>
     </platformOptionsList>
 </project>
-
