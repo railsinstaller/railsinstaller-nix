@@ -76,6 +76,13 @@ rix.start()
   rix.build.installer
 }
 
+rix.echo()
+{
+  log "$*"
+  shift
+  $@
+}
+
 rix.build.installer()
 {
   typeset version osx_target
@@ -85,9 +92,9 @@ rix.build.installer()
   then
     for osx_target in 10.6 10.7
     do
-      log "Building installer $version for OSX $osx_target."
-      $installbuilder_path/bin/builder \
-        build $initial_pwd/installbuilder/riosx.xml \
+      rm -rf $installbuilder_path/output/RailsInstaller-${version}-osx-${osx_target}.app
+      rix.echo "Building installer $version for OSX $osx_target." \
+        $installbuilder_path/bin/builder build $initial_pwd/installbuilder/riosx.xml \
         ${installbuilder_license:+--license} ${installbuilder_license:-} \
         --setvars osx_target=${osx_target}
 
@@ -101,14 +108,17 @@ rix.build.installer()
         printf "\n"
       )
       scp $installbuilder_path/output/RailsInstaller-${version}-osx-${osx_target}.app.tgz rvm@rvm.io:~/shared/public/src/
-      log "- https://rvm.beginrescueend.com/src/RailsInstaller-${version}-osx-${osx_target}.app.tgz"
+      log "- https://rvm.io/src/RailsInstaller-${version}-osx-${osx_target}.app.tgz"
     done
   elif os type is linux
   then
-    log "Building installer $version for Linux."
-    $installbuilder_path/bin/builder build $initial_pwd/installbuilder/riosx.xml
+    rm -rf $installbuilder_path/output/RailsInstaller-${version}-linux-x64.run
+    rix.echo "Building installer $version for Linux." \
+      $installbuilder_path/bin/builder build $initial_pwd/installbuilder/riosx.xml \
+      ${installbuilder_license:+--license} ${installbuilder_license:-}
+
     scp $installbuilder_path/output/RailsInstaller-${version}-linux-x64.run rvm@rvm.io:~/shared/public/src/
-    log "- https://rvm.beginrescueend.com/src/RailsInstaller-${version}-linux-x64.run"
+    log "- https://rvm.io/src/RailsInstaller-${version}-linux-x64.run"
   else
     log error "Not supported platform - can not build installer."
   fi
