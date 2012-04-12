@@ -34,4 +34,4 @@ To forward ssh session to root:
 
 And finally to use different license for building:
 
-    echo "export installbuilder_license=$HOME/installbuilder-license.xml" > /etc/rixrc
+    echo "export installbuilder_license=$HOME/installbuilder-license.xml" >> /etc/rixrc
