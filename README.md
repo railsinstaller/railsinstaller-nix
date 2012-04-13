@@ -2,8 +2,7 @@
 
 Rails development environment installer for OS X
 
-Download the latest version: [ [1.0.0 - OSX 10.6](https://rvm.io/src/RailsInstaller-1.0.0-osx-10.6.app.tgz) |
- [1.0.0 - OSX 10.7](https://rvm.io/src/RailsInstaller-1.0.0-osx-10.7.app.tgz) ]
+Get the latest version via [downloads](https://github.com/railsinstaller/railsinstaller-nix/downloads)
 
 ## Overview
 
