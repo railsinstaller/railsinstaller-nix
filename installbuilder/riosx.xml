@@ -599,7 +599,7 @@ Note that any Xcode installations are handled by the same uninstaller and will b
                     <name>git_username</name>
                     <description>Full name</description>
                     <explanation></explanation>
-                    <value></value>
+                    <value>${git_username}</value>
                     <default></default>
                     <allowEmptyValue>1</allowEmptyValue>
                     <width>30</width>
@@ -608,7 +608,7 @@ Note that any Xcode installations are handled by the same uninstaller and will b
                     <name>git_email</name>
                     <description>Email</description>
                     <explanation></explanation>
-                    <value></value>
+                    <value>${git_email}</value>
                     <default></default>
                     <allowEmptyValue>1</allowEmptyValue>
                     <width>30</width>
