@@ -23,7 +23,7 @@ rix_initialize()
     __rix_sm_packages=(
       zlib ncurses ncursesw readline
       libyaml libxml2 libxslt libffi libiconv
-      openssl sqlite3 expat curl git zsh
+      openssl sqlite3 expat curl git
     )
   elif os type is linux
   then

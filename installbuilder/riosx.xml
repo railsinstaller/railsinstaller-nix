@@ -290,15 +290,6 @@
                     <destination>/opt</destination>
                     <name>sm_files</name>
                     <platforms>all</platforms>
-                    <actionList>
-                        <substitute>
-                            <files>/opt/sm/bin/sm</files>
-                            <type>exact</type>
-                            <substitutionList>
-                                <substitution pattern="#!/bin/zsh" value="#!/opt/sm/pkg/active/bin/zsh"/>
-                            </substitutionList>
-                        </substitute>
-                    </actionList>
                     <distributionFileList>
                         <distributionDirectory>
                             <origin>/opt/sm</origin>

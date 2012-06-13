@@ -3,7 +3,7 @@
 set -o errexit
 set -o nounset
 
-__initial_env=( $(env | grep -v PS1) )
+__initial_env=( $(env | sed 's/=\(.*\)$/='\'\\1\''/') )
 
 if (( UID ))
 then
