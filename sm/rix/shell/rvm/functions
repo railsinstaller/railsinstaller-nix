@@ -2,7 +2,7 @@
 
 rix.rvm.rails.new()
 {
-  log step "rails new (initialization)"
+  log step "rails new"
   printf "\n"
   rm -rf /tmp/example_rails_app_$$
   if   rails new /tmp/example_rails_app_$$ 2>&1 | tee $logs/rails_new | log dotted
@@ -11,11 +11,11 @@ rix.rvm.rails.new()
   fi
 }
 
-rix.rvm.install.rails()
+rix.rvm.gem.install()
 {
-  log step "install rails"
+  log step "gem install $1"
   printf "\n"
-  if gem install rails $@ 2>&1 | tee $logs/install_rails | log dotted
+  if gem install $@ 2>&1 | tee $logs/gem_install_$1 | log dotted
   then
     log step success
   else
