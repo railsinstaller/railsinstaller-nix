@@ -29,7 +29,7 @@ To keep the prepared files use __no_clean variable, which will prevent the proce
 
 To forward ssh session to root:
 
-    time eval sudo /usr/bin/env $(env | grep ^SSH  | sed 's/=\(.*\)$/="\1"/') __no_clean=true ./prepare.sh
+    time eval sudo /usr/bin/env $(env | grep ^SSH  | sed 's/=\(.*\)$/='\'\\1\''/')  __no_clean=true ./prepare.sh
 
 And finally to use different license for building:
 
