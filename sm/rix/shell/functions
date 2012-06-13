@@ -66,7 +66,7 @@ rix.start()
 
   rix.rvm.install
 
-  rix.rvm.install.ruby 1.9.3 --64 --with-gcc=gcc-4.2
+  rix.rvm.install.ruby 1.9.3 --64 --with-gcc=gcc-4.2 --with-out-ext=tcl --with-out-ext=tk --disable-libedit
   # rix.rvm.install.ruby jruby --1.9
   # rix.rvm.install.ruby rbx --1.9
 
