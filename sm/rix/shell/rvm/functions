@@ -111,3 +111,11 @@ rix.rvm.install()
     log step success
   fi
 }
+
+rix.rvm.cleanup()
+{
+  rm -rf /usr/local/rvm/archives
+  mkdir -p /usr/local/rvm/archives
+  rvm cleanup all
+  rvm gemset globalcache enable
+}
