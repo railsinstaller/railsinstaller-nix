@@ -43,13 +43,15 @@ rix.sm.install.gcc.darwin()
   fi
 
   # it's not gcc but fits in the logic
-  instaler_md5=498d35dd7d793b507048e22417864d63
+  instaler_md5=1735da7fae0e1e231957709fc3a402ad
   if [[ $(md5 -q /opt/rix/JewelryBox_RIX.zip 2>/dev/null) == $instaler_md5 ]]
   then
     log "Using existing JewelryBox with md5=$instaler_md5"
   else
+    [[ ! -f /opt/rix/JewelryBox_RIX.zip ]] || rm -f /opt/rix/JewelryBox_RIX.zip
     log "Downloading JewelryBox"
-    curl -kL http://unfiniti.com/assets/JewelryBox_RIX.zip -o /opt/rix/JewelryBox_RIX.zip
+    TODO: this will fail, we need better link
+    curl -kL https://docs.google.com/file/d/0B7-mS4miSnyfN1JWOHNJYTRxZTg/edit?pli=1 -o /opt/rix/JewelryBox_RIX.zip
     [[ $(md5 -q /opt/rix/JewelryBox_RIX.zip 2>/dev/null) == $instaler_md5 ]]
   fi
   # and this is to support JewelryBox uninstalling
