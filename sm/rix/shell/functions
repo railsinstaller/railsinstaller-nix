@@ -72,6 +72,7 @@ rix.start()
 
   rix.rvm.default.ruby 1.9.3
   rix.rvm.install.rails
+  rix.rvm.rails.new
 
   rix.build.installer
 }

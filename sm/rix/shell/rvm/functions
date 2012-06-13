@@ -1,5 +1,16 @@
 #!/bin/sh
 
+rix.rvm.rails.new()
+{
+  log step "rails new (initialization)"
+  printf "\n"
+  rm -rf /tmp/example_rails_app_$$
+  if   rails new /tmp/example_rails_app_$$ 2>&1 | tee $logs/rails_new | log dotted
+  then log step success
+  else log step failed
+  fi
+}
+
 rix.rvm.install.rails()
 {
   log step "install rails"
