@@ -48,7 +48,7 @@ rix.start()
   typeset var
   export PATH
 
-  trace_filter action
+  trace_filter action || set -o xtrace
   log "Rails Installer uniX - preparation script - start"
   log step "backup sm/rvm" rix.old_install.backup
 
