@@ -41,8 +41,8 @@ rix.rvm.install.ruby()
 
 rix.rvm.validate.mri.libs()
 {
-  find /usr/local/rvm/rubies/ -name *.bundle | xargs otool -L | grep -vE \
-    '/usr/lib/libobjc.A.dylib|/usr/lib/libSystem.B.dylib|/opt/sm/pkg/versions/|/usr/local/rvm/rubies/|/usr/local/rvm/usr/' | \
+  find /usr/local/rvm/rubies/ -name "*.bundle" | xargs otool -L | grep -vE \
+    '/usr/lib/libobjc.A.dylib|/usr/lib/libSystem.B.dylib|/opt/sm/pkg/versions/|/usr/local/rvm/rubies/.*/libruby.*dylib|/usr/local/rvm/usr/' | \
     awk '/:/ {last=$0} /^\t/ && last!="" {print last; last=""} /^\t/{print $0}' | \
     tee $logs/validate_ruby
 }
