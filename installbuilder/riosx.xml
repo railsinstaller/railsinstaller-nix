@@ -165,7 +165,7 @@
                     <explanation>Checking system</explanation>
                     <actionList>
                         <showWarning>
-                            <text>This installer was build only for OSX 10.7, exiting now.</text>
+                            <text>This installer was build only for OSX 10.7 / 10.8, exiting now.</text>
                         </showWarning>
                         <exit>
                             <exitCode>2</exitCode>
@@ -177,6 +177,12 @@
                             <negate>1</negate>
                             <text>${osx_major_version}</text>
                             <value>10.7</value>
+                        </compareText>
+                        <compareText>
+                            <logic>equals</logic>
+                            <negate>1</negate>
+                            <text>${osx_major_version}</text>
+                            <value>10.8</value>
                         </compareText>
                     </ruleList>
                 </actionGroup>
