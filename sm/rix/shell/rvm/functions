@@ -28,9 +28,16 @@ rix.rvm.install.ruby()
   log step "install ruby - $1"
   printf "\n"
   if
-    LDFLAGS="-L/opt/sm/pkg/active/lib" \
-    CFLAGS="-I/opt/sm/pkg/active/include" \
-    CPATH="/opt/sm/pkg/active/include" \
+    ! GREP_OPTIONS="" \grep rvm_configure_env /etc/rvmrc >/dev/null
+  then
+    printf "export -a rvm_configure_env\n\
+rvm_configure_env=('\
+LDFLAGS=-L/opt/sm/pkg/active/lib \
+CFLAGS=-I/opt/sm/pkg/active/include \
+CPATH=/opt/sm/pkg/active/include\
+')\n" >> /etc/rvmrc
+  fi
+  if
     rvm install $@ 2>&1 | tee $logs/install_ruby-$1 | log dotted
   then
     log step success
