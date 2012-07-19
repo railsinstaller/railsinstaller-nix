@@ -125,4 +125,5 @@ rix.rvm.cleanup()
   mkdir -p /usr/local/rvm/archives
   rvm cleanup all
   rvm gemset globalcache enable
+  chmod -R g+w /usr/local/rvm
 }
