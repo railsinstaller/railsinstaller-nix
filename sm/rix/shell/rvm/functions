@@ -25,6 +25,7 @@ rix.rvm.gem.install()
 
 rix.rvm.install.ruby()
 {
+  typeset GREP_OPTIONS
   log step "install ruby - $1"
   printf "\n"
   if
