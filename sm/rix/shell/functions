@@ -53,6 +53,7 @@ rix.start()
   log step "backup sm/rvm" rix.old_install.backup
 
   rix.sm.install
+  log step "validate /etc/profile.d/sm.sh" file contains string /opt/sm in /etc/profile.d/sm.sh
 
   for var in "${__rix_sm_sets[@]}"
   do rix.sm.install.set $var
