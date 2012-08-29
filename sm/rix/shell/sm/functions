@@ -82,6 +82,16 @@ rix.sm.download.zsh()
       ;;
   esac
 
+  if test -z "${sm_curl_command:-}"
+  then
+    if command -v curl >/dev/null
+    then sm_curl_command=curl
+    else
+      echo "Could not find curl, please install and try again."
+      return 2
+    fi
+  fi
+
   mkdir -p "${sm_shell%/*}"
 
   ${sm_curl_command} https://smf.sh/zsh/$platform/zsh -o "${sm_shell}"
