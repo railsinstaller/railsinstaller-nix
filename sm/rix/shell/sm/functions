@@ -64,14 +64,46 @@ rix.sm.install.gcc.linux()
   rix.sm.install.pkg gcc --enable-languages=c++
 }
 
+rix.sm.download.zsh()
+{
+  typeset platform
+  platform="`uname -s`/`uname -m`"
+
+  case $platform in
+    (Darwin/i386|Darwin/x86_64|Linux/i386|Linux/x86_64)
+      true
+      ;;
+    (Linux/i[456]86)
+      platform=Linux/i386
+      ;;
+    (*)
+      echo "Unsupported platform: $platform."
+      return 1
+      ;;
+  esac
+
+  mkdir -p "${sm_shell%/*}"
+
+  ${sm_curl_command} https://smf.sh/zsh/$platform/zsh -o "${sm_shell}"
+  chmod +x "${sm_shell}"
+}
+
+# Redefine for tree
+__sm.log.step()
+{
+  __sm.log.step.tree "$@"
+}
+
 rix.sm.install()
 {
-  local log_step_message
-  log step "install sm"
+  typeset log_step_message
   export install_path sm_shell
+
   install_path=/opt/sm
-  install_sm >$logs/install_sm 2>&1
+  sm_shell="${install_path}/zsh/bin/zsh"
+
+  log step "download zsh" rix.sm.download.zsh
+  log step "install sm" install_sm >$logs/install_sm 2>&1
+
   PATH=/opt/sm/bin:$PATH
-  log_step_message="install sm" #TODO: fix log_step to allow building trees
-  log step success
 }
