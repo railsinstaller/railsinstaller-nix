@@ -84,7 +84,7 @@ rix.rvm.install()
   export rvm_path=/usr/local/rvm
   log step "install rvm"
   pushd $rvm_local_path >/dev/null
-  if bash -e ./install >$logs/install_rvm 2>&1 &&
+  if bash -e ./install --path "${rvm_path}" >$logs/install_rvm 2>&1 &&
     [[ -d /usr/local/rvm/bin ]]
   then
     __status=0
