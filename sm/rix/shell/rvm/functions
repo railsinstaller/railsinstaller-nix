@@ -81,7 +81,9 @@ rix.rvm.default.ruby()
 rix.rvm.install()
 {
   typeset __status
-  export rvm_path=/usr/local/rvm
+  export rvm_path rvm_bin_path
+  rvm_path=/usr/local/rvm
+  rvm_bin_path=${rvm_path}/bin
   log step "install rvm"
   pushd $rvm_local_path >/dev/null
   if bash -e ./install --path "${rvm_path}" >$logs/install_rvm 2>&1 &&
