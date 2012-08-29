@@ -80,18 +80,18 @@ rix.rvm.default.ruby()
 
 rix.rvm.install()
 {
-  typeset __status
   export rvm_path rvm_bin_path
   rvm_path=/usr/local/rvm
   rvm_bin_path=${rvm_path}/bin
   log step "install rvm"
   pushd $rvm_local_path >/dev/null
-  if bash -e ./install --path "${rvm_path}" >$logs/install_rvm 2>&1 &&
-    [[ -d /usr/local/rvm/bin ]]
+  if
+    bash -e ./install --path $rvm_path >$logs/install_rvm 2>&1 &&
+    [[ -d $rvm_path/bin ]]
   then
-    __status=0
-    PATH=/usr/local/rvm/bin:$PATH
     log step success
+    PATH=$rvm_path/bin:$PATH
+    git branch | awk '$1=="*"{print $2}' > $rvm_path/RELEASE
     popd >/dev/null
   else
     log step failed
