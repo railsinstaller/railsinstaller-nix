@@ -33,11 +33,11 @@
                     <shortcutList>
                         <shortcut>
                             <comment>Uninstall</comment>
-                            <exec>/opt/rix/${uninstallerName}</exec>
+                            <exec>/Applications/${uninstallerName}</exec>
                             <icon></icon>
                             <name>Uninstall ${product_fullname}</name>
                             <path>/opt/rix</path>
-                            <platforms>all</platforms>
+                            <platforms>osx</platforms>
                             <runAsAdmin>0</runAsAdmin>
                             <runInTerminal>0</runInTerminal>
                             <windowsExec></windowsExec>
@@ -542,7 +542,8 @@ Note that any Xcode installations are handled by the same uninstaller and will b
     <enableRollback>1</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <requireInstallationByRootUser>1</requireInstallationByRootUser>
-    <uninstallerDirectory>/opt/rix</uninstallerDirectory>
+    <uninstallerDirectory>/Applications</uninstallerDirectory>
+    <uninstallerName>RailsInstallerOSX-Uninstaller</uninstallerName>
     <vendor>Rails Installer</vendor>
     <finalPageActionList>
         <runProgram>
