@@ -25,6 +25,19 @@ do
 done
 popd >/dev/null
 
+__package=""
+case $(sw_vers -productVersion) in
+  10.6.*)        __package="GCC-10.6.pkg"    ;;
+  10.7.*|10.8.*) __package="GCC-10.7-v2.pkg" ;;
+esac
+[[ -z "${__package:-}" ]] ||
+{
+  sudo mkdir -p /opt/rix &&
+  sudo curl -kL https://github.com/downloads/kennethreitz/osx-gcc-installer/${__package} -o /opt/rix/${__package} &&
+  sudo installer -package /opt/rix/${__package} -target / ||
+  echo "Failed downloading/installing ${__package}"
+}
+
 printf -- "-- paths in /etc/rixrc :\n"
 printf "\
 export sm_local_path=$PROJECTS/sm\n\
