@@ -33,7 +33,7 @@ esac
 [[ -z "${__package:-}" ]] ||
 {
   sudo mkdir -p /opt/rix &&
-  sudo curl -kL https://github.com/downloads/kennethreitz/osx-gcc-installer/${__package} -o /opt/rix/${__package} &&
+  sudo curl -kLC - https://github.com/downloads/kennethreitz/osx-gcc-installer/${__package} -o /opt/rix/${__package} &&
   sudo installer -package /opt/rix/${__package} -target / ||
   echo "Failed downloading/installing ${__package}"
 }
