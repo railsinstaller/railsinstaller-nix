@@ -20,7 +20,7 @@ do
   {
     printf -- "-- preparing $dir :\n"
     mkdir -p $dir
-    curl -L https://github.com/$project/archive/master.tar.gz | tar xz --strip-components=1 --touch -C $dir
+    curl -L https://github.com/$project/archive/master.tar.gz | tar xz --strip-components=1 -C $dir
   }
 done
 popd >/dev/null
