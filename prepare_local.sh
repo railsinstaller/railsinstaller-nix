@@ -3,29 +3,28 @@
 PROJECTS=$1
 BUILDER=$2
 
-if [[ -z "$PROJECTS" || -z "$BUILDER" ]]
+if
+  [[ -z "$PROJECTS" || -z "$BUILDER" ]]
 then
   printf "Use\n  $0 /path/to/projects /path/to/installbuilder\n"
   exit 1
 fi
 
-if [[ ! -d "$PROJECTS" ]]
-then
-  mkdir -p "$PROJECTS"
-fi
+[[ -d "$PROJECTS" ]] || mkdir -p "$PROJECTS"
 
 pushd $PROJECTS >/dev/null
-for project in sm/sm wayneeseguin/rvm
+for project in sm/sm wayneeseguin/rvm railsinstaller/railsinstaller-nix
 do
-  dir=$(basename $project)
-  if [[ -d $dir ]]
+  dir=${project#*/}
+  if
+    [[ -d $dir ]]
   then
     printf -- "-- updating $dir :\n"
     pushd $dir >/dev/null
     git pull
     popd >/dev/null
   else
-    git clone git@github.com:$project
+    git clone git@github.com:$project.git
   fi
 done
 popd >/dev/null

@@ -15,7 +15,7 @@ with no required prerequisites on a OS X system.
 Local copy is used to build installer, so any branch/version locally downloaded
 will be used. For quick configuration in ~/projects and with [installbuilder](http://installbuilder.bitrock.com/) use:
 
-    ./prepare_local.sh ~/projects ~/installbuilder
+    curl -L https://raw.github.com/railsinstaller/railsinstaller-nix/master/prepare_local.sh | bash -s -- ~/projects ~/installbuilder
 
 ## Building installer
 
