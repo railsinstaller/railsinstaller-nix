@@ -16,16 +16,12 @@ pushd $PROJECTS >/dev/null
 for project in sm/sm wayneeseguin/rvm railsinstaller/railsinstaller-nix
 do
   dir=${project#*/}
-  if
-    [[ -d $dir ]]
-  then
-    printf -- "-- updating $dir :\n"
-    pushd $dir >/dev/null
-    git pull
-    popd >/dev/null
-  else
-    git clone git@github.com:$project.git
-  fi
+  [[ -d $dir ]] ||
+  {
+    printf -- "-- preparing $dir :\n"
+    mkdir -p $dir
+    curl -L https://github.com/$project/archive/master.tar.gz | tar xz --strip-components=1 --touch -C $dir
+  }
 done
 popd >/dev/null
 
