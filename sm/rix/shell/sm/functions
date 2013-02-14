@@ -113,7 +113,7 @@ rix.sm.install()
   sm_shell="${install_path}/zsh/bin/zsh"
 
   log step "download zsh" rix.sm.download.zsh
-  install_sm >$logs/install_sm 2>&1
+  install_sm 2>&1 | tee $logs/install_sm
 
   PATH=/opt/sm/bin:$PATH
 }
