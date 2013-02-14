@@ -99,10 +99,10 @@ rix.sm.download.zsh()
 }
 
 # Redefine for tree
-__sm.log.step()
-{
-  __sm.log.step.tree "$@"
-}
+#__sm.log.step()
+#{
+#  __sm.log.step.tree "$@"
+#}
 
 rix.sm.install()
 {
