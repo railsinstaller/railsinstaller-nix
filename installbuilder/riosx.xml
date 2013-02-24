@@ -229,8 +229,8 @@
             </shouldPackRuleList>
         </component>
         <component>
-            <name>JewelryBox</name>
-            <description>JewelryBox</description>
+            <name>JewelryBox_13</name>
+            <description>JewelryBox 1.3</description>
             <canBeEdited>0</canBeEdited>
             <selected>1</selected>
             <show>1</show>
@@ -238,23 +238,23 @@
                 <folder>
                     <description>JewelryBox pkg http://jewelrybox.unfiniti.com/</description>
                     <destination>/opt/rix/</destination>
-                    <name>JewelryBox_pkg</name>
+                    <name>JewelryBox_pkg_13</name>
                     <platforms>osx</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>/opt/rix/JewelryBox_RIX.zip</origin>
+                            <origin>/opt/rix/JewelryBox_v1.3.tar.bz2</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
             </folderList>
             <postInstallationActionList>
                 <showProgressDialog>
-                    <title>Installing JewelryBox - The official RVM GUI</title>
+                    <title>Installing JewelryBox 1.3 - The official RVM GUI</title>
                     <actionList>
                         <runProgram>
-                            <explanation>Installing JewelryBox - The official RVM GUI</explanation>
+                            <explanation>Installing JewelryBox 1.3 - The official RVM GUI</explanation>
                             <program>sudo</program>
-                            <programArguments>sh -c "cd /Applications ; rm -rf JewelryBox.app ; unzip /opt/rix/JewelryBox_RIX.zip"</programArguments>
+                            <programArguments>sh -c "cd /Applications ; rm -rf JewelryBox.app ; tar xjf /opt/rix/JewelryBox_v1.3.tar.bz2"</programArguments>
                             <ruleList>
                                 <platformTest type="osx-intel"/>
                             </ruleList>
@@ -281,6 +281,71 @@
                 <platformTest>
                     <type>osx-intel</type>
                 </platformTest>
+                <compareValues>
+                    <logic>equals</logic>
+                    <value1>${osx_target}</value1>
+                    <value2>10.6</value2>
+                </compareValues>
+            </shouldPackRuleList>
+        </component>
+        <component>
+            <name>JewelryBox_141</name>
+            <description>JewelryBox 1.4.1</description>
+            <canBeEdited>0</canBeEdited>
+            <selected>1</selected>
+            <show>1</show>
+            <folderList>
+                <folder>
+                    <description>JewelryBox pkg http://jewelrybox.unfiniti.com/</description>
+                    <destination>/opt/rix/JewelryBox_v1.4.1.tar.bz2</destination>
+                    <name>JewelryBox_pkg_141</name>
+                    <platforms>osx</platforms>
+                    <distributionFileList>
+                        <distributionFile>
+                            <origin>/opt/rix/JewelryBox_RIX.zipJewelryBox_v1.4.1.tar.bz2</origin>
+                        </distributionFile>
+                    </distributionFileList>
+                </folder>
+            </folderList>
+            <postInstallationActionList>
+                <showProgressDialog>
+                    <title>Installing JewelryBox 1.4.1 - The official RVM GUI</title>
+                    <actionList>
+                        <runProgram>
+                            <explanation>Installing JewelryBox 1.4.1 - The official RVM GUI</explanation>
+                            <program>sudo</program>
+                            <programArguments>sh -c "cd /Applications ; rm -rf JewelryBox.app ; tar xjf /opt/rix/JewelryBox_v1.4.1.tar.bz2"</programArguments>
+                            <ruleList>
+                                <platformTest type="osx-intel"/>
+                            </ruleList>
+                        </runProgram>
+                    </actionList>
+                </showProgressDialog>
+            </postInstallationActionList>
+            <postUninstallationActionList>
+                <showProgressDialog>
+                    <title>Uninstalling JewelryBox - The official RVM GUI</title>
+                    <actionList>
+                        <runProgram>
+                            <explanation>Uninstalling JewelryBox - The official RVM GUI</explanation>
+                            <program>sudo</program>
+                            <programArguments>rm -rf /Applications/JewelryBox.app</programArguments>
+                            <ruleList>
+                                <platformTest type="osx-intel"/>
+                            </ruleList>
+                        </runProgram>
+                    </actionList>
+                </showProgressDialog>
+            </postUninstallationActionList>
+            <shouldPackRuleList>
+                <platformTest>
+                    <type>osx-intel</type>
+                </platformTest>
+                <compareValues>
+                    <logic>equals</logic>
+                    <value1>${osx_target}</value1>
+                    <value2>10.7</value2>
+                </compareValues>
             </shouldPackRuleList>
         </component>
         <component>
@@ -627,3 +692,4 @@ Note that any Xcode installations are handled by the same uninstaller and will b
         </platformOptions>
     </platformOptionsList>
 </project>
+
