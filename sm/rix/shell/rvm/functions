@@ -28,22 +28,23 @@ rix.rvm.install.ruby()
   typeset GREP_OPTIONS
   log step "install ruby - $1"
   printf "\n"
-  if
-    ! GREP_OPTIONS="" \grep rvm_configure_env /etc/rvmrc >/dev/null
-  then
+  GREP_OPTIONS="" \grep rvm_configure_env /etc/rvmrc >/dev/null ||
+  {
     printf "export -a rvm_configure_env\n\
 rvm_configure_env=( \
 'LDFLAGS=-L/opt/sm/pkg/active/lib' \
 'CFLAGS=-I/opt/sm/pkg/active/include' \
 'CPATH=/opt/sm/pkg/active/include' \
 )\n" >> /etc/rvmrc
-  fi
-  if
-    rvm install $@ 2>&1 | tee $logs/install_ruby-$1 | log dotted
-  then
-    log step success
-  else
-    log step failed
+  }
+  # Disable autolibs for installation
+  GREP_OPTIONS="" \grep rvm_autolibs_flag /etc/rvmrc >/dev/null ||
+  {
+    printf "export rvm_autolibs_flag=0\n" >> /etc/rvmrc
+  }
+  if rvm install $@ 2>&1 | tee $logs/install_ruby-$1 | log dotted
+  then log step success
+  else log step failed
   fi
 }
 
