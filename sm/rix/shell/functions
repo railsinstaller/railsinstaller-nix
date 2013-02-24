@@ -113,6 +113,7 @@ rix.build.installer()
           2>&1 | tee $logs/package_osx_${osx_target}_installer | log dotted
         printf "\n"
       )
+      log "Uploading: scp $installbuilder_path/output/RailsInstaller-${version}-osx-${osx_target}.app.tgz rvm@rvm.io:~/shared/public/src/"
       scp $installbuilder_path/output/RailsInstaller-${version}-osx-${osx_target}.app.tgz rvm@rvm.io:~/shared/public/src/
       log "- https://rvm.io/src/RailsInstaller-${version}-osx-${osx_target}.app.tgz"
     done
