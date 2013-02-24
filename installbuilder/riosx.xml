@@ -297,7 +297,7 @@
             <folderList>
                 <folder>
                     <description>JewelryBox pkg http://jewelrybox.unfiniti.com/</description>
-                    <destination>/opt/rix/JewelryBox_v1.4.1.tar.bz2</destination>
+                    <destination>/opt/rix/</destination>
                     <name>JewelryBox_pkg_141</name>
                     <platforms>osx</platforms>
                     <distributionFileList>
