@@ -18,45 +18,34 @@ rix.sm.install.pkg()
   sm $name install "$@"
 }
 
+rix.sm.install.gcc.darwin.download()
+{
+  if [[ $(md5 -q /opt/rix/$1 2>/dev/null) == $2 ]]
+  then
+    log "Using existing $1 with md5=$2"
+  else
+    log "Downloading $1"
+    curl -kL $3 -o /opt/rix/$1
+    [[ $(md5 -q /opt/rix/$1 2>/dev/null) == $2 ]]
+  fi
+}
+
 rix.sm.install.gcc.darwin()
 {
-  typeset instaler_md5
+  rix.sm.install.gcc.darwin.download GCC-10.6.pkg d1db5bab6a3f6b9f3b5577a130baeefa \
+    https://github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.6.pkg
 
-  instaler_md5=df36aa87606feb99d0db9ac9a492819e
-  if [[ $(md5 -q /opt/rix/GCC-10.7-v2.pkg 2>/dev/null) == $instaler_md5 ]]
-  then
-    log "Using existing OSX-GCC-Installer 10.7-v2 with md5=$instaler_md5"
-  else
-    log "Downloading OSX-GCC-Installer 10.7-v2"
-    curl -kL https://github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg -o /opt/rix/GCC-10.7-v2.pkg
-    [[ $(md5 -q /opt/rix/GCC-10.7-v2.pkg 2>/dev/null) == $instaler_md5 ]]
-  fi
+  rix.sm.install.gcc.darwin.download GCC-10.7-v2.pkg df36aa87606feb99d0db9ac9a492819e \
+    https://github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg
 
-  instaler_md5=d1db5bab6a3f6b9f3b5577a130baeefa
-  if [[ $(md5 -q /opt/rix/GCC-10.6.pkg 2>/dev/null) == $instaler_md5 ]]
-  then
-    log "Using existing OSX-GCC-Installer 10.6 with md5=$instaler_md5"
-  else
-    log "Downloading OSX-GCC-Installer 10.6"
-    curl -kL https://github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.6.pkg -o /opt/rix/GCC-10.6.pkg
-    [[ $(md5 -q /opt/rix/GCC-10.6.pkg 2>/dev/null) == $instaler_md5 ]]
-  fi
+  rix.sm.install.gcc.darwin.download JewelryBox_v1.3.tar.bz2 23a4417b76fb763447bd88e5c5d6f941 \
+    https://doc-0s-6c-docs.googleusercontent.com/docs/securesc/ha0ro937gcuc7l7deffksulhg5h7mbp1/uu735t84av89c3npp65t8ublotth1hql/1361664000000/15605595434155487156/*/0B7-mS4miSnyfN1JWOHNJYTRxZTg?e=download
 
-  # it's not gcc but fits in the logic
-  instaler_md5=1735da7fae0e1e231957709fc3a402ad
-  if [[ $(md5 -q /opt/rix/JewelryBox_RIX.zip 2>/dev/null) == $instaler_md5 ]]
-  then
-    log "Using existing JewelryBox with md5=$instaler_md5"
-  else
-    [[ ! -f /opt/rix/JewelryBox_RIX.zip ]] || rm -f /opt/rix/JewelryBox_RIX.zip
-    log "Downloading JewelryBox"
-    TODO: this will fail, we need better link
-    curl -kL https://docs.google.com/file/d/0B7-mS4miSnyfN1JWOHNJYTRxZTg/edit?pli=1 -o /opt/rix/JewelryBox_RIX.zip
-    [[ $(md5 -q /opt/rix/JewelryBox_RIX.zip 2>/dev/null) == $instaler_md5 ]]
-  fi
+  rix.sm.install.gcc.darwin.download JewelryBox_v1.4.1.tar.bz2 4f7cdbdaa7a4efe1140e0e0f3bf49593 \
+    http://jewelrybox.unfiniti.com/download/JewelryBox_v1.4.1.tar.bz2
+
   # and this is to support JewelryBox uninstalling
   curl -kL https://raw.github.com/mpapis/pkg_uninstaller/master/pkg-install -o /opt/rix/pkg-install
-
 }
 
 rix.sm.install.gcc.linux()
