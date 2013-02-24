@@ -302,7 +302,7 @@
                     <platforms>osx</platforms>
                     <distributionFileList>
                         <distributionFile>
-                            <origin>/opt/rix/JewelryBox_RIX.zipJewelryBox_v1.4.1.tar.bz2</origin>
+                            <origin>/opt/rix/JewelryBox_v1.4.1.tar.bz2</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
